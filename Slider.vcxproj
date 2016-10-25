@@ -151,6 +151,9 @@
   <ItemGroup>
     <ResourceCompile Include="res\Slider.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\LuaJIT\lua51.lib" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
