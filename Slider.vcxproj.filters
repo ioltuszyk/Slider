@@ -17,7 +17,7 @@
   <ItemGroup>
     <None Include="README.md" />
     <None Include="doc\empty" />
-    <None Include="test\empty" />
+    <None Include="test\example.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">
@@ -53,8 +53,5 @@
     <ResourceCompile Include="res\Slider.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="lib\LuaJIT\lua51.lib" />
   </ItemGroup>
 </Project>

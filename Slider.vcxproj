@@ -131,7 +131,7 @@
   <ItemGroup>
     <None Include="doc\empty" />
     <None Include="README.md" />
-    <None Include="test\empty" />
+    <None Include="test\example.lua" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE">
@@ -150,9 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Slider.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="lib\LuaJIT\lua51.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
