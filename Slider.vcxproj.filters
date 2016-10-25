@@ -17,7 +17,6 @@
   <ItemGroup>
     <None Include="README.md" />
     <None Include="doc\empty" />
-    <None Include="test\example.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">

@@ -131,7 +131,6 @@
   <ItemGroup>
     <None Include="doc\empty" />
     <None Include="README.md" />
-    <None Include="test\example.lua" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE">
