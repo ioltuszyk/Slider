@@ -30,9 +30,6 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="lib\LuaJIT\lua51.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="include\LuaJIT\lauxlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -56,5 +53,8 @@
     <ResourceCompile Include="res\Slider.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\LuaJIT\lua51.lib" />
   </ItemGroup>
 </Project>

@@ -141,9 +141,6 @@
     <ClCompile Include="src\slider.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="lib\LuaJIT\lua51.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="include\LuaJIT\lauxlib.h" />
     <ClInclude Include="include\LuaJIT\lua.h" />
     <ClInclude Include="include\LuaJIT\luaconf.h" />
@@ -153,6 +150,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Slider.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\LuaJIT\lua51.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
