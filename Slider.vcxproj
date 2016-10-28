@@ -69,12 +69,15 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\Users\IanOl\OneDrive\Documents\Visual Studio 2015\Projects\Slider\lib\LuaJIT;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib\LuaJIT;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LibraryPath>$(SolutionDir)lib\LuaJIT;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LibraryPath>$(SolutionDir)lib\LuaJIT;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LibraryPath>$(SolutionDir)lib\LuaJIT;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -140,11 +143,14 @@
     <ClCompile Include="src\slider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Game.hpp" />
     <ClInclude Include="include\LuaJIT\lauxlib.h" />
     <ClInclude Include="include\LuaJIT\lua.h" />
     <ClInclude Include="include\LuaJIT\luaconf.h" />
     <ClInclude Include="include\LuaJIT\luajit.h" />
     <ClInclude Include="include\LuaJIT\lualib.h" />
+    <ClInclude Include="include\Puzzle.hpp" />
+    <ClInclude Include="include\Slider.hpp" />
     <ClInclude Include="res\resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +160,5 @@
     <Library Include="lib\LuaJIT\lua51.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>
