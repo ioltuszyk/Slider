@@ -1,13 +1,15 @@
 #ifndef PUZZLE_HPP
 #define PUZZLE_HPP
 
-//{ Utility-related
+//{ Framework-related
 
 #include "Slider.hpp"
+#include "State.hpp"
+#include "Board.hpp"
 
 //}
 
-//{ Meta-related
+//{ Game-related
 
 
 

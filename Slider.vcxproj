@@ -140,9 +140,13 @@
       <FileType>Text</FileType>
       <DeploymentContent>false</DeploymentContent>
     </Text>
+    <ClCompile Include="src\State.cpp" />
+    <ClCompile Include="src\Board.cpp" />
+    <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\slider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Board.hpp" />
     <ClInclude Include="include\Game.hpp" />
     <ClInclude Include="include\LuaJIT\lauxlib.h" />
     <ClInclude Include="include\LuaJIT\lua.h" />
@@ -151,6 +155,7 @@
     <ClInclude Include="include\LuaJIT\lualib.h" />
     <ClInclude Include="include\Puzzle.hpp" />
     <ClInclude Include="include\Slider.hpp" />
+    <ClInclude Include="include\State.hpp" />
     <ClInclude Include="res\resource.h" />
   </ItemGroup>
   <ItemGroup>
