@@ -22,8 +22,9 @@ public:
 	~Board();
 
 	void Init();
+	State* GetCurrentState();
 private:
-	StateHistory m_stateHistory;
+	StateHistory m_vStateHistory;
 };
 
 _EXIT_NAMESPACE_SLIDER_

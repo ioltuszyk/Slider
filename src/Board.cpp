@@ -11,12 +11,17 @@ ConstBoard::ConstBoard(int width, int height)
 //----------------------------------------------------------------------------
 Board::~Board()
 {
-	m_stateHistory.clear();
+	m_vStateHistory.clear();
 }
 
 void Board::Init()
 {
 	State initState(m_width, m_height);
-	m_stateHistory.push_back(initState);
+	m_vStateHistory.push_back(initState);
+}
+
+State* Board::GetCurrentState()
+{
+	return &m_vStateHistory.back();
 }
 //----------------------------------------------------------------------------

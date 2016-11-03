@@ -6,6 +6,6 @@ int main(int argc, char** argv)
 {
 	Game* game = new Game(4,4);
 
-	Delete(game);
+	DeletePointer(game);
 	return 0;
 }

@@ -10,8 +10,13 @@ class State
 public:
 	State(int, int);
 	~State();
+
+	void SetOccupied(int, int, bool);
+	void State::PrintOccupied();
 private:
-	
+	std::vector<bool>* m_pOccupied;
+	int m_width;
+	int m_height;
 };
 
 typedef std::vector<State> StateHistory;

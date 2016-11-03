@@ -11,7 +11,7 @@ public:
 	Game(int, int);
 	~Game();
 private:
-	Board* m_board;
+	Board* m_pBoard;
 };
 
 _EXIT_NAMESPACE_SLIDER_
