@@ -42,13 +42,22 @@ void Lua::FromFile(lua_State* state, std::string file)
 	executing = false;
 }
 
-void Lua::Run(std::string file, std::function<void(bool*, std::thread*)> func)
+void Lua::Run(std::string file, std::function<bool(std::thread*)> func)
 {
 	std::thread luaThread(FromFile, State, file);
-	func(&executing, &luaThread);
 	if (func==NULL)
 	{
 		luaThread.join();
+	}
+	else
+	{
+		bool issuedBreak = false;
+		do // respond to events during script execution and/or perform tasks
+		{
+			issuedBreak = func(&luaThread);
+		} while (executing & !issuedBreak); // note: can join if expected to finish
+		luaThread.detach(); // always detach before destructor...
+		luaThread.~thread(); // if you want to stop the execution of the script
 	}
 }
 //----------------------------------------------------------------------------

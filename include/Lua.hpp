@@ -42,7 +42,7 @@ namespace Lua
 
 	void Init(std::string);
 	void FromFile(lua_State*, std::string);
-	void Run(std::string, std::function<void(bool*, std::thread*)>);
+	void Run(std::string, std::function<bool(std::thread*)>);
 }
 
 _EXIT_NAMESPACE_SLIDER_
