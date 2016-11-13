@@ -70,6 +70,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(SolutionDir)lib\LuaJIT;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)include\LuaJIT;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LibraryPath>$(SolutionDir)lib\LuaJIT;$(LibraryPath)</LibraryPath>
@@ -79,6 +80,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LibraryPath>$(SolutionDir)lib\LuaJIT;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)include\LuaJIT;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -86,6 +88,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalDependencies>lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -97,7 +100,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -132,30 +139,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="bin\Lua\init.lua" />
     <None Include="doc\empty" />
     <None Include="README.md" />
+    <None Include="test\Lua\example.lua" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE">
       <FileType>Text</FileType>
       <DeploymentContent>false</DeploymentContent>
     </Text>
-    <ClCompile Include="src\State.cpp" />
-    <ClCompile Include="src\Board.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Lua.cpp" />
+    <ClCompile Include="src\Ruleset.cpp" />
     <ClCompile Include="src\slider.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Board.hpp" />
     <ClInclude Include="include\Game.hpp" />
+    <ClInclude Include="include\Lua.hpp" />
     <ClInclude Include="include\LuaJIT\lauxlib.h" />
     <ClInclude Include="include\LuaJIT\lua.h" />
     <ClInclude Include="include\LuaJIT\luaconf.h" />
     <ClInclude Include="include\LuaJIT\luajit.h" />
     <ClInclude Include="include\LuaJIT\lualib.h" />
-    <ClInclude Include="include\Puzzle.hpp" />
+    <ClInclude Include="include\Ruleset.hpp" />
     <ClInclude Include="include\Slider.hpp" />
-    <ClInclude Include="include\State.hpp" />
     <ClInclude Include="res\resource.h" />
   </ItemGroup>
   <ItemGroup>

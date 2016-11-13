@@ -17,18 +17,20 @@
   <ItemGroup>
     <None Include="README.md" />
     <None Include="doc\empty" />
+    <None Include="bin\Lua\init.lua" />
+    <None Include="test\Lua\example.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Board.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\State.cpp">
+    <ClCompile Include="src\Ruleset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lua.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -54,16 +56,13 @@
     <ClInclude Include="include\Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Puzzle.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Slider.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Board.hpp">
+    <ClInclude Include="include\Ruleset.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\State.hpp">
+    <ClInclude Include="include\Lua.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,14 +1,14 @@
 #include "../include/Slider.hpp"
-#include "../include/Game.hpp"
+#include "../include/Ruleset.hpp"
 
 using namespace slider;
 
 //----------------------------------------------------------------------------
-Game::Game(int width, int height)
+Ruleset::Ruleset()
 {
 }
 
-Game::~Game()
+Ruleset::~Ruleset()
 {
 }
 //----------------------------------------------------------------------------

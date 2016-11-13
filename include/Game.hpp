@@ -1,7 +1,7 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "Puzzle.hpp"
+#include "Slider.hpp"
 
 _ENTER_NAMESPACE_SLIDER_
 
@@ -11,7 +11,7 @@ public:
 	Game(int, int);
 	~Game();
 private:
-	Board* m_pBoard;
+
 };
 
 _EXIT_NAMESPACE_SLIDER_
