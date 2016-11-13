@@ -34,7 +34,7 @@ namespace Lua
 		
 		return 0;
 	}
-	static const struct luaL_Reg waitLibs[] = // print
+	static const struct luaL_Reg waitLib[] = // wait(seconds)
 	{
 		{"wait", wait0},
 		{NULL, NULL}

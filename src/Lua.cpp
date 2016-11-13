@@ -23,14 +23,14 @@ void Lua::Init(std::string path)
 
 	/* C Libraries */
 	lua_getglobal(State, "_G");
-	luaL_register(State, NULL, waitLibs);
+	luaL_register(State, NULL, waitLib);
 	/* ... */
 	lua_pop(State, 1);
 
 	/* Lua Libraries */
 	char * initPath = (char *)malloc(1+strlen(path.c_str())+strlen("\\..\\bin\\Lua\\init.lua"));
 	strcpy(initPath, path.c_str());
-	strcat(initPath, "\\..\\bin\\Lua\\init.lua");
+	strcat(initPath, "..\\bin\\Lua\\init.lua");
 	luaL_dofile(State, initPath);
 	free(initPath);
 }
@@ -56,8 +56,11 @@ void Lua::Run(std::string file, std::function<bool(std::thread*)> func)
 		{
 			issuedBreak = func(&luaThread);
 		} while (executing & !issuedBreak); // note: can join if expected to finish
-		luaThread.detach(); // always detach before destructor...
-		luaThread.~thread(); // if you want to stop the execution of the script
+		if (luaThread.joinable())
+		{
+			luaThread.detach(); // always detach before destructor...
+			luaThread.~thread(); // if you want to stop the execution of the script
+		}
 	}
 }
 //----------------------------------------------------------------------------

@@ -1,2 +1,2 @@
 wait(2)
-alert("Statistics", "CPU time:\t\t"..time.getelapsed())
+alert("Statistics", "CPU time:\t\t"..time.getelapsed().." seconds")

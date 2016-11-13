@@ -140,9 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="bin\Lua\init.lua" />
+    <None Include="bin\Lua\instructions.lua" />
     <None Include="doc\empty" />
     <None Include="README.md" />
     <None Include="test\Lua\example.lua" />
+    <None Include="test\test.c-snippet" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE">

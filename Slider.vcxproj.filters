@@ -19,6 +19,8 @@
     <None Include="doc\empty" />
     <None Include="bin\Lua\init.lua" />
     <None Include="test\Lua\example.lua" />
+    <None Include="test\test.c-snippet" />
+    <None Include="bin\Lua\instructions.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">

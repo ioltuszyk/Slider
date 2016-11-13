@@ -4,22 +4,28 @@
 
 using namespace slider;
 
-std::string path;
-
 int main(int argc, char** argv)
 {
 	std::string fullPath(argv[0]);
-	path = fullPath.substr(0, fullPath.find_last_of("\\"));
+	std::string path = fullPath.substr(0, fullPath.find_last_of("\\")+1);
 
 	Lua::Init(path);
-	Lua::Run(path+"\\..\\test\\Lua\\example.lua", [](std::thread* luaThread)
+	printf("Displaying instructions\n");
+	Lua::Run(path+"..\\bin\\Lua\\instructions.lua", [](std::thread* luaThread)
 	{
-		if ((GetAsyncKeyState('Q')&0x8000)) // Q pressed event
-		{
-			/* stuff to be done while the lua script executes */
-			printf("Pressed Q to exit execution\n");
-			return true; // stop execution of the script
-		}
+		printf(".");
+		std::this_thread::sleep_for(std::chrono::microseconds(50000));
+		printf(".");
+		std::this_thread::sleep_for(std::chrono::microseconds(50000));
+		printf(".");
+		std::this_thread::sleep_for(std::chrono::microseconds(50000));
+		printf("\b \b");
+		std::this_thread::sleep_for(std::chrono::microseconds(50000));
+		printf("\b \b");
+		std::this_thread::sleep_for(std::chrono::microseconds(50000));
+		printf("\b \b");
+		std::this_thread::sleep_for(std::chrono::microseconds(50000));
+		return false;
 	});
 
 	Game game(4,4);
