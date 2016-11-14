@@ -141,6 +141,7 @@
   <ItemGroup>
     <None Include="bin\Lua\init.lua" />
     <None Include="bin\Lua\instructions.lua" />
+    <None Include="bin\Lua\rulesets.lua" />
     <None Include="doc\empty" />
     <None Include="README.md" />
     <None Include="test\Lua\example.lua" />

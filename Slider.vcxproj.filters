@@ -21,6 +21,7 @@
     <None Include="test\Lua\example.lua" />
     <None Include="test\test.c-snippet" />
     <None Include="bin\Lua\instructions.lua" />
+    <None Include="bin\Lua\rulesets.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">

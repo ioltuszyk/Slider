@@ -1,8 +1,8 @@
 #ifndef LUA_HPP
 #define LUA_HPP
 
-#include <thread>
-#include <chrono>
+#include <thread> /* For async execution of lua*/
+#include <chrono> /* For sleep_for */
 #include <Windows.h> /* For MessageBoxA and GetAsyncKeyState;
 	need alternatives for linux */
 
@@ -20,6 +20,14 @@ _ENTER_NAMESPACE_SLIDER_
 
 namespace Lua
 {
+	enum ThreadReturn
+	{
+		FINISH,
+		REPEAT,
+		ABORT,
+		GUARD
+	};
+
 	static int wait0(lua_State* State)
 	{
 		int argc = lua_gettop(State);
@@ -41,8 +49,9 @@ namespace Lua
 	};
 
 	void Init(std::string);
-	void FromFile(lua_State*, std::string);
-	void Run(std::string, std::function<bool(std::thread*)>);
+	void Execute(lua_State*, std::string, std::function<void()>, bool*);
+	void RunAsync(std::string, std::function<void()>, bool*);
+	void RunSync(std::string);
 }
 
 _EXIT_NAMESPACE_SLIDER_

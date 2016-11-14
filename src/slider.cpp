@@ -1,6 +1,8 @@
-#include "../include/Game.hpp"
+﻿#include "../include/Game.hpp"
 #include "../include/Ruleset.hpp"
 #include "../include/Lua.hpp"
+
+#include <vector>
 
 using namespace slider;
 
@@ -9,30 +11,28 @@ int main(int argc, char** argv)
 	std::string fullPath(argv[0]);
 	std::string path = fullPath.substr(0, fullPath.find_last_of("\\")+1);
 
+	printf("Showing Instructions");
 	Lua::Init(path);
-	printf("Displaying instructions\n");
-	Lua::Run(path+"..\\bin\\Lua\\instructions.lua", [](std::thread* luaThread)
+	bool instructions_closed = false;
+	Lua::RunAsync(path+"..\\bin\\Lua\\instructions.lua", NULL, &instructions_closed);
+	std::vector<char *> ellipses_anim = {".", ".", ".", "\b \b", "\b \b", "\b \b"};
+	while (!instructions_closed)
 	{
-		printf(".");
-		std::this_thread::sleep_for(std::chrono::microseconds(50000));
-		printf(".");
-		std::this_thread::sleep_for(std::chrono::microseconds(50000));
-		printf(".");
-		std::this_thread::sleep_for(std::chrono::microseconds(50000));
-		printf("\b \b");
-		std::this_thread::sleep_for(std::chrono::microseconds(50000));
-		printf("\b \b");
-		std::this_thread::sleep_for(std::chrono::microseconds(50000));
-		printf("\b \b");
-		std::this_thread::sleep_for(std::chrono::microseconds(50000));
-		return false;
-	});
+		for (auto i:ellipses_anim)
+		{
+			printf(i);
+			if (!instructions_closed)
+			{
+				std::this_thread::sleep_for(std::chrono::microseconds(200000));
+			}
+		}
+	}
+	//Lua::RunSync(path+"..\\bin\\Lua\\rulesets.lua");
 
-	Game game(4,4);
+	Game game(4, 4);
 	Ruleset rules;
 
 	//game.Apply(rules);
-
 	do
 	{
 		//game.Evaluate(heuristic); // a decision

@@ -5,7 +5,6 @@ using namespace slider;
 _ENTER_NAMESPACE_SLIDER_
 namespace Lua // Multiply-defined symbols otherwise
 {
-	bool executing = false;
 	lua_State* State;
 }
 _EXIT_NAMESPACE_SLIDER_
@@ -13,7 +12,6 @@ _EXIT_NAMESPACE_SLIDER_
 //----------------------------------------------------------------------------
 void Lua::Init(std::string path)
 {
-	printf("Initializing Lua Module\n");
 	State = luaL_newstate();
 
 	/* Standard Libraries */
@@ -35,32 +33,31 @@ void Lua::Init(std::string path)
 	free(initPath);
 }
 
-void Lua::FromFile(lua_State* state, std::string file)
+void Lua::Execute(lua_State* state, std::string file, std::function<void()> end, bool* status)
 {
-	executing = true;
 	luaL_dofile(state, file.c_str());
-	executing = false;
+	if (end!=NULL)
+	{
+		end();
+	}
+	if (status!=NULL)
+	{
+		*status = true;
+	}
 }
 
-void Lua::Run(std::string file, std::function<bool(std::thread*)> func)
+void Lua::RunAsync(std::string file, std::function<void()> end, bool* status)
 {
-	std::thread luaThread(FromFile, State, file);
-	if (func==NULL)
+	if (status!=NULL)
 	{
-		luaThread.join();
+		*status = false;
 	}
-	else
-	{
-		bool issuedBreak = false;
-		do // respond to events during script execution and/or perform tasks
-		{
-			issuedBreak = func(&luaThread);
-		} while (executing & !issuedBreak); // note: can join if expected to finish
-		if (luaThread.joinable())
-		{
-			luaThread.detach(); // always detach before destructor...
-			luaThread.~thread(); // if you want to stop the execution of the script
-		}
-	}
+	std::thread routine(Execute, State, file, end, status);
+	routine.detach();
+}
+
+void Lua::RunSync(std::string file)
+{
+	luaL_dofile(State, file.c_str());
 }
 //----------------------------------------------------------------------------
