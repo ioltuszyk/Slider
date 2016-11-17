@@ -4,10 +4,9 @@
 
 Slider is a program that uses minimax to play games that involve the combination of tiles with matching values based on directional input. 
 
-Different rulesets can be used and created using Lua and involve changing parameters in the global State.Ruleset table. Each ruleset should override:
-  - State.Ruleset.spawning, which validates possible new children under State.Tree.
-  - State.Ruleset.movement, which validates directional input.
-  - State.Ruleset.selection, ---
+Different rulesets can be used and created using Lua and involve changing parameters in the Rules table. Each ruleset should override:
+  - Rules.spawning, which determines the method of creating new children under State.Branch when the computer plays (randomly).
+  - Rules.movement, which determines the method of creating new children under State.Branch when the user plays (heuristic).
 
 The heuristic evaluation and tree generation is done in C++ and referenced by LuaJIT's FFI.
 
