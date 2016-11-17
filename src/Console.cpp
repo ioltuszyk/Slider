@@ -20,7 +20,7 @@ void Console::SetCursorPos(int x, int y)
 	SetConsoleCursorPosition(Console, CursorPos);
 }
 
-void Console::PromptMenu(std::string title, std::vector<MenuOption> options)
+void Console::PromptMenu(std::string title, std::vector<MenuOption> options, std::function<void()> ret)
 {
 	bool running = true;
 
@@ -40,6 +40,7 @@ void Console::PromptMenu(std::string title, std::vector<MenuOption> options)
 	SetCursorPos(2, (selectedOption++));	printf(" Confirm");
 	SetCursorPos(2, (selectedOption++));	printf(" Return");
 	selectedOption = 2;
+	SetCursorPos(1000, 1000);
 	while (running)
 	{
 		system("pause>nul");
@@ -73,13 +74,15 @@ void Console::PromptMenu(std::string title, std::vector<MenuOption> options)
 			else if ((selectedOption-2)==nOptions-2)
 			{
 				// confirm
-				SetCursorPos(0, 0);
+				system("cls");
 				selectedFunction();
 				return;
 			}
 			else
 			{
 				// return
+				system("cls");
+				ret();
 				return;
 			}
 		}

@@ -4,7 +4,7 @@ int main(int argc, char** argv)
 {
 	Console::Init(argv);
 	Lua::Init(Console::Path);
-
+	printf("aldhaksdh");
 	bool instructions_closed;
 	Lua::RunAsync(Console::Path+"..\\bin\\Lua\\instructions.lua", NULL, &instructions_closed);
 
@@ -20,7 +20,8 @@ int main(int argc, char** argv)
 			}
 		}
 	}
-	printf("\b\b\b            \b\b\b");
+
+	system("cls");
 	//Lua::RunSync(path+"..\\bin\\Lua\\rulesets.lua");
 
 	Console::PromptMenu("Main Menu", {
@@ -33,7 +34,8 @@ int main(int argc, char** argv)
 			{
 			}
 		}
-	});
+	}, []() {
+		});
 
 	return 0;
 }

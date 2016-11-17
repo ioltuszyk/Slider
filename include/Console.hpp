@@ -24,7 +24,7 @@ namespace Console
 
 	void Init(char**);
 	void SetCursorPos(int, int);
-	void PromptMenu(std::string, std::vector<MenuOption>);
+	void PromptMenu(std::string, std::vector<MenuOption>, std::function<void()>);
 }
 
 #endif // !CONSOLE_HPP
