@@ -29,13 +29,15 @@ Rules = {
 }
 
 Board = {
-    Bounds = {3,3},
+    Bounds = {15000,15000},
     History = {},
     Previous = function () end,
     Forward = function () end,
     State = {}
 }
 Board.Size = Board.Bounds[1]*Board.Bounds[2]
+
+time.reset() -- testing
 
 for i=1, Board.Size do
     local newTile = Tile.new(nil, nil, nil, nil)
@@ -44,14 +46,55 @@ for i=1, Board.Size do
 end
 
 for i=1, Board.Size do
+    --print("Populating Tile #"..i)
     --left top corner
     if (i==1) then
-        Board.State[1]:SetDirection("Right", Board.State[2])
-        Board.State[1]:SetDirection("Down", Board.State[1+Board.Bounds[1]])
+        Board.State[i]:SetDirection("Right", Board.State[i+1])
+        Board.State[i]:SetDirection("Down", Board.State[i+Board.Bounds[1]])
+     --right top corner
+    elseif (i==Board.Bounds[1]) then
+        Board.State[i]:SetDirection("Left", Board.State[i-1])
+        Board.State[i]:SetDirection("Down", Board.State[i+Board.Bounds[1]])
+    --top row
+    elseif (i>=1) and (i<=Board.Bounds[1]) then
+        Board.State[i]:SetDirection("Left", Board.State[i-1])
+        Board.State[i]:SetDirection("Right", Board.State[i+1])
+        Board.State[i]:SetDirection("Down", Board.State[i+Board.Bounds[1]])
+    --left bottom corner
+    elseif (i==(Board.Size-Board.Bounds[1]+1)) then
+        Board.State[i]:SetDirection("Up", Board.State[i-Board.Bounds[1]])
+        Board.State[i]:SetDirection("Right", Board.State[i+1])
+    --right bottom corner
+    elseif (i==Board.Size) then
+        Board.State[i]:SetDirection("Left", Board.State[i-1])
+        Board.State[i]:SetDirection("Up", Board.State[i-Board.Bounds[1]])
+    --bottom row
+    elseif (i>=(Board.Size-Board.Bounds[1]+1)) and (i<=Board.Size) then
+        Board.State[i]:SetDirection("Left", Board.State[i-1])
+        Board.State[i]:SetDirection("Up", Board.State[i-Board.Bounds[1]])
+        Board.State[i]:SetDirection("Right", Board.State[i+1])
+    --left row
+    elseif (i%Board.Bounds[1]==1) then
+        Board.State[i]:SetDirection("Up", Board.State[i-Board.Bounds[1]])
+        Board.State[i]:SetDirection("Right", Board.State[i+1])
+        Board.State[i]:SetDirection("Down", Board.State[i+Board.Bounds[1]])
+    --right row
+    elseif (i%Board.Bounds[1]==0) then
+        Board.State[i]:SetDirection("Left", Board.State[i-1])
+        Board.State[i]:SetDirection("Up", Board.State[i-Board.Bounds[1]])
+        Board.State[i]:SetDirection("Down", Board.State[i+Board.Bounds[1]])
+    --center
+    else
+        Board.State[i]:SetDirection("Left", Board.State[i-1])
+        Board.State[i]:SetDirection("Up", Board.State[i-Board.Bounds[1]])
+        Board.State[i]:SetDirection("Right", Board.State[i+1])
+        Board.State[i]:SetDirection("Down", Board.State[i+Board.Bounds[1]])
     end
 end
 
-print(Board.State[1]:GetDirection("Down"):GetValue())
+--[[
+TODO:   New .lua, draw Board.State every ___ seconds -> the magic of async
+]]
 
-print("Made all the tiles")
+print("Made "..Board.Size.." tiles in ~"..time.getelapsed().." seconds")
 wait(10)
