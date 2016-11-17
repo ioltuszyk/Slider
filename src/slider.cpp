@@ -1,20 +1,13 @@
-﻿#include "../include/Game.hpp"
-#include "../include/Ruleset.hpp"
-#include "../include/Lua.hpp"
-
-#include <vector>
-
-using namespace slider;
+﻿#include "../include/Slider.hpp"
 
 int main(int argc, char** argv)
 {
-	std::string fullPath(argv[0]);
-	std::string path = fullPath.substr(0, fullPath.find_last_of("\\")+1);
+	Console::Init(argv);
+	Lua::Init(Console::Path);
 
-	printf("Showing Instructions");
-	Lua::Init(path);
-	bool instructions_closed = false;
-	Lua::RunAsync(path+"..\\bin\\Lua\\instructions.lua", NULL, &instructions_closed);
+	bool instructions_closed;
+	Lua::RunAsync(Console::Path+"..\\bin\\Lua\\instructions.lua", NULL, &instructions_closed);
+
 	std::vector<char *> ellipses_anim = {".", ".", ".", "\b \b", "\b \b", "\b \b"};
 	while (!instructions_closed)
 	{
@@ -27,16 +20,20 @@ int main(int argc, char** argv)
 			}
 		}
 	}
+	printf("\b\b\b            \b\b\b");
 	//Lua::RunSync(path+"..\\bin\\Lua\\rulesets.lua");
 
-	Game game(4, 4);
-	Ruleset rules;
-
-	//game.Apply(rules);
-	do
-	{
-		//game.Evaluate(heuristic); // a decision
-	} while (false);
+	Console::PromptMenu("Main Menu", {
+		{"Default", []()
+			{
+				printf("Test\n");
+			}
+		},
+		{"Other", []()
+			{
+			}
+		}
+	});
 
 	return 0;
 }

@@ -104,6 +104,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -152,20 +153,18 @@
       <FileType>Text</FileType>
       <DeploymentContent>false</DeploymentContent>
     </Text>
-    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Console.cpp" />
     <ClCompile Include="src\Lua.cpp" />
-    <ClCompile Include="src\Ruleset.cpp" />
     <ClCompile Include="src\slider.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Game.hpp" />
+    <ClInclude Include="include\Console.hpp" />
     <ClInclude Include="include\Lua.hpp" />
     <ClInclude Include="include\LuaJIT\lauxlib.h" />
     <ClInclude Include="include\LuaJIT\lua.h" />
     <ClInclude Include="include\LuaJIT\luaconf.h" />
     <ClInclude Include="include\LuaJIT\luajit.h" />
     <ClInclude Include="include\LuaJIT\lualib.h" />
-    <ClInclude Include="include\Ruleset.hpp" />
     <ClInclude Include="include\Slider.hpp" />
     <ClInclude Include="res\resource.h" />
   </ItemGroup>
@@ -174,6 +173,10 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\LuaJIT\lua51.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\..\..\Downloads\Project 2.mp3" />
+    <Media Include="bin\background.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

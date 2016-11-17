@@ -1,13 +1,9 @@
 #include "../include/Lua.hpp"
 
-using namespace slider;
-
-_ENTER_NAMESPACE_SLIDER_
-namespace Lua // Multiply-defined symbols otherwise
+namespace Lua
 {
 	lua_State* State;
 }
-_EXIT_NAMESPACE_SLIDER_
 
 //----------------------------------------------------------------------------
 void Lua::Init(std::string path)

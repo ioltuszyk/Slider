@@ -1,12 +1,16 @@
 #ifndef LUA_HPP
 #define LUA_HPP
 
-#include <thread> /* For async execution of lua*/
-#include <chrono> /* For sleep_for */
-#include <Windows.h> /* For MessageBoxA and GetAsyncKeyState;
-	need alternatives for linux */
+#include <thread>
+#include <chrono>
+#include <vector>
 
-#include "Slider.hpp"
+#ifdef _WIN32
+#include <Windows.h> /* For MessageBoxA and GetAsyncKeyState */
+#else
+#include <SDL.h> /* For SDL_ShowSimpleMessageBox and SDL_GetKeyState*/
+#endif
+
 extern "C"
 {
 #include "LuaJIT\luaconf.h"
@@ -16,17 +20,9 @@ extern "C"
 #include "LuaJIT\luajit.h"
 }
 
-_ENTER_NAMESPACE_SLIDER_
-
 namespace Lua
 {
-	enum ThreadReturn
-	{
-		FINISH,
-		REPEAT,
-		ABORT,
-		GUARD
-	};
+	extern lua_State* State;
 
 	static int wait0(lua_State* State)
 	{
@@ -53,7 +49,5 @@ namespace Lua
 	void RunAsync(std::string, std::function<void()>, bool*);
 	void RunSync(std::string);
 }
-
-_EXIT_NAMESPACE_SLIDER_
 
 #endif // !LUA_HPP

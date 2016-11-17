@@ -1,11 +1,7 @@
 #ifndef SLIDER_HPP
 #define SLIDER_HPP
 
-//{ Namespace Definition
-
-#define _ENTER_NAMESPACE_SLIDER_ namespace slider {
-#define _EXIT_NAMESPACE_SLIDER_ }
-
-//}
+#include "Console.hpp"
+#include "Lua.hpp"
 
 #endif // !SLIDER_HPP
