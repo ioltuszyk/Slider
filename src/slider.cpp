@@ -26,16 +26,16 @@ int main(int argc, char** argv)
 
 	Console::PromptMenu("Main Menu", {
 		{"Default", []()
-			{
-				printf("Test\n");
-			}
+	{
+		printf("Test\n");
+	}
 		},
 		{"Other", []()
-			{
-			}
+	{
+	}
 		}
 	}, []() {
-		});
+	});
 
 	return 0;
 }
