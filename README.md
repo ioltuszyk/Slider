@@ -2,13 +2,14 @@
 
 ![CMPUT396 Project](https://s22.postimg.org/6gqbjdoq9/slider_thumb.png)
 
-Slider is a player that uses minimax search for a set of games that have a single goal - which they share: the combination of tiles with matching values based on directional input. 
+Slider is a program that uses minimax to play games that involve the combination of tiles with matching values based on directional input. 
 
-The different rulesets for each version of the game are implemented using LuaJIT and involve:
-  - A "spawner", which tracks the locations where the computer can place a piece after the player's move and randomly outputs a new state 
-  - A "mover", which tracks what directional inputs are valid and outputs a new state based on input
+Different rulesets can be used and created using Lua and involve changing parameters in the global State.Ruleset table. Each ruleset should override:
+  - State.Ruleset.spawning, which validates possible new children under State.Tree.
+  - State.Ruleset.movement, which validates directional input.
+  - State.Ruleset.selection, ---
 
-The heuristic evaluation and tree generation is done in C++. The latter is done according to the rules defined in the lua modules.
+The heuristic evaluation and tree generation is done in C++ and referenced by LuaJIT's FFI.
 
 Developer documentation will be provided at a later date.
 
