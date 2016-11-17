@@ -20,12 +20,11 @@ Board = {
     Bounds = {4,4},
     History = {}
 }
-Board.History.Current = function ()
-    if (#Board.History>0) then
-        return Board.History[#Board.History]
+function Board:GetCurrentState()
+    if (#self.History>0) then
+        return self.History[#self.History]
     end
 end
-Board.Size = Board.Bounds[1]*Board.Bounds[2]
 
 Tile = {}
 Tile.__index = Tile
@@ -70,6 +69,11 @@ function State.new(ancestor)
     state.Ancestor = ancestor
     state.Branch = {}
     state.Tiles = {}
+    state.Print = function ()
+        for i=1, #state.Tiles do
+            print(state.Tiles[i].Value)
+        end
+    end
     return state
 end
 function State:Init()
@@ -103,12 +107,12 @@ function State:Init()
             self.Tiles[i]:SetDirection("Left")
             self.Tiles[i]:SetDirection("Up")
             self.Tiles[i]:SetDirection("Right")
-        --left row
+        --left column
         elseif (i%Board.Bounds[1]==1) then
             self.Tiles[i]:SetDirection("Up")
             self.Tiles[i]:SetDirection("Right")
             self.Tiles[i]:SetDirection("Down")
-        --right row
+        --right column
         elseif (i%Board.Bounds[1]==0) then
             self.Tiles[i]:SetDirection("Left")
             self.Tiles[i]:SetDirection("Up")
@@ -123,8 +127,44 @@ function State:Init()
     end
     return self
 end
+function State:Generate(method = "Move")
+    if (method=="Move") then
+        --shift right
+        change = false
+        cursor = Board.Bounds[1]
+
+        --incrementing by the size to get the last value in each row.
+        for i=Board.Bounds[1], Board.Size, Board.Bounds[1] do
+            match = Board:GetCurrentState().Tiles[i]:GetValue()
+            --to match and merge
+            -- -1 to not compare to starting value
+            --value adjacent to the rightmost column
+            for n=i - 1, i - Board.Bounds[1], -1 do
+                
+
+            end
+            --to remove zeros
+            for n=i, i - Board.Bounds[1], -1 do
+
+            end
+        end 
+
+
+
+    else -- Spawn
+
+    end
+end
 
 function Board:Init(x, y)
     self.Bounds = {x,y}
+    Board.Size = Board.Bounds[1]*Board.Bounds[2]
     table.insert(self.History, State.new(nil):Init())
 end
+
+Board:Init(4, 4)
+
+
+
+
+
