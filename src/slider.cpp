@@ -25,17 +25,19 @@ int main(int argc, char** argv)
 	//Lua::RunSync(path+"..\\bin\\Lua\\rulesets.lua");
 
 	Console::PromptMenu("Main Menu", {
-		{"Default", []()
-	{
-		printf("Test\n");
-	}
+		{"Default", []() 
+			{
+				Lua::RunSync(Console::Path+"..\\bin\\Lua\\Rules\\Default.lua");
+			}
 		},
 		{"Other", []()
-	{
-	}
+			{
+			}
 		}
 	}, []() {
+		//
 	});
 
+	std::this_thread::sleep_for(std::chrono::microseconds(100000000));
 	return 0;
 }
