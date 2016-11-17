@@ -174,10 +174,6 @@
   <ItemGroup>
     <Library Include="lib\LuaJIT\lua51.lib" />
   </ItemGroup>
-  <ItemGroup>
-    <Media Include="..\..\..\..\..\Downloads\Project 2.mp3" />
-    <Media Include="bin\background.mp3" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

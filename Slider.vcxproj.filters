@@ -76,8 +76,4 @@
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>
-  <ItemGroup>
-    <Media Include="..\..\..\..\..\Downloads\Project 2.mp3" />
-    <Media Include="bin\background.mp3" />
-  </ItemGroup>
 </Project>
