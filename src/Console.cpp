@@ -30,17 +30,15 @@ void Console::PromptMenu(std::string title, std::vector<MenuOption> options, std
 	std::function<void()> selectedFunction = options[0].Func;
 
 	SetCursorPos(0, 0); printf(title.c_str());
-	SetCursorPos(0, 2); printf("->");
 	for (auto i:options)
 	{
 		SetCursorPos(2, selectedOption++);	printf(" %s", i.Label.c_str());
 	}
 	menuBreak = selectedOption;
 	SetCursorPos(2, (selectedOption++));	printf(" ----------------");
-	SetCursorPos(2, (selectedOption++));	printf(" Confirm");
+	SetCursorPos(0, (selectedOption++));	printf("-> Confirm");
 	SetCursorPos(2, (selectedOption++));	printf(" Return");
-	selectedOption = 2;
-	SetCursorPos(1000, 1000);
+	selectedOption = 4;
 	while (running)
 	{
 		system("pause>nul");

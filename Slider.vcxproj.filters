@@ -22,6 +22,10 @@
     <None Include="test\test.c-snippet" />
     <None Include="bin\Lua\instructions.lua" />
     <None Include="bin\Lua\Rules\Default.lua" />
+    <None Include="bin\Lua\classes.lua" />
+    <None Include="bin\Lua\manual_down.lua" />
+    <None Include="bin\Lua\manual_right.lua" />
+    <None Include="bin\Lua\manual_up.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">
@@ -75,5 +79,6 @@
     <Text Include="LICENSE">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="bin\Lua\manual_left.lua" />
   </ItemGroup>
 </Project>

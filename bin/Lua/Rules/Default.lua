@@ -1,6 +1,23 @@
-time.reset() -- testing
+print("Manual Input Enabled")
 
-Board:Init(4, 4)
+currentState = State.new(nil)
+currentState.Tiles = {
+    0, 0, 0, 0, 0
+    0, 0, 0, 0, 0
+    0, 0, 0, 0, 0
+    0, 0, 0, 0, 0
+}
+currentState:Print()
 
-print("Made "..Board.Size.." tiles in ~"..time.getelapsed().." seconds")
-wait(10)
+--[[
+time.reset()
+
+for i=1, 50000 do
+    initialState:Branch()
+end
+initialState.Tree[144322]:Print()
+
+print(time.getElapsed())
+]]
+
+-- Uncomment for stress testing; manual keys enabled in slider.cpp
