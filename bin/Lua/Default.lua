@@ -2,10 +2,10 @@ print("Manual Input Enabled")
 
 currentState = State.new(nil)
 currentState.Tiles = {
-    0, 0, 0, 0, 0
-    0, 0, 0, 0, 0
-    0, 0, 0, 0, 0
-    0, 0, 0, 0, 0
+    0, 2, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 2, 0,
+    0, 0, 0, 0
 }
 currentState:Print()
 

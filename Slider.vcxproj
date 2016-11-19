@@ -148,7 +148,7 @@
     </None>
     <None Include="bin\Lua\manual_right.lua" />
     <None Include="bin\Lua\manual_up.lua" />
-    <None Include="bin\Lua\Rules\Default.lua" />
+    <None Include="bin\Lua\Default.lua" />
     <None Include="doc\empty" />
     <None Include="README.md" />
     <None Include="test\Lua\example.lua" />

@@ -20,15 +20,13 @@ int main(int argc, char** argv)
 			}
 		}
 	}
-
-	Lua::RunSync(Console::Path+"..\\bin\\Lua\\classes.lua");
 	system("cls");
-	//Lua::RunSync(path+"..\\bin\\Lua\\rulesets.lua");
+	Lua::RunSync(Console::Path+"..\\bin\\Lua\\classes.lua");
 
 	Console::PromptMenu("Main Menu", {
 		{"Default", []() 
 			{
-				Lua::RunSync(Console::Path+"..\\bin\\Lua\\Rules\\Default.lua");
+				Lua::RunSync(Console::Path+"..\\bin\\Lua\\Default.lua");
 			}
 		}
 	}, []() {
@@ -42,6 +40,17 @@ int main(int argc, char** argv)
 		if (GetAsyncKeyState(VK_SPACE))
 		{
 			manual = !manual;
+			if (manual)
+			{
+				Console::SetCursorPos(0, 0);
+				printf("Manual Input Enabled ");
+				Console::SetCursorPos(20, 0);
+			}
+			else
+			{
+				Console::SetCursorPos(0, 0);
+				printf("Manual Input Disabled");
+			}
 		}
 		if (GetAsyncKeyState(VK_LEFT))
 		{
@@ -50,6 +59,7 @@ int main(int argc, char** argv)
 				system("cls");
 				Lua::RunSync(Console::Path+"..\\bin\\Lua\\manual_left.lua");
 			}
+
 		}
 		else if (GetAsyncKeyState(VK_RIGHT))
 		{
@@ -77,6 +87,5 @@ int main(int argc, char** argv)
 		}
 	}
 
-	std::this_thread::sleep_for(std::chrono::microseconds(10000000000));
 	return 0;
 }

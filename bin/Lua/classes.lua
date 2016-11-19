@@ -382,7 +382,6 @@ function State:Branch()
 			move_down.Tiles[Board.Size-(Board.Width)+i-(k-1)*Board.Width]=values[k]
 		end
  	end
-
     table.insert(self.Tree, move_left)
 	table.insert(self.Tree, move_right)
    	table.insert(self.Tree, move_up)
