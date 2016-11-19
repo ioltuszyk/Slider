@@ -4,7 +4,7 @@ int main(int argc, char** argv)
 {
 	Console::Init(argv);
 	Lua::Init(Console::Path);
-	printf("aldhaksdh");
+	printf("Displaying Instructions");
 	bool instructions_closed;
 	Lua::RunAsync(Console::Path+"..\\bin\\Lua\\instructions.lua", NULL, &instructions_closed);
 
@@ -27,17 +27,23 @@ int main(int argc, char** argv)
 	Console::PromptMenu("Main Menu", {
 		{"Default", []() 
 			{
-				Lua::RunSync(Console::Path+"..\\bin\\Lua\\Rules\\Default.lua");
-			}
-		},
-		{"Other", []()
-			{
+				Lua::RunAsync(Console::Path+"..\\bin\\Lua\\Rules\\Default.lua", NULL, NULL);
 			}
 		}
 	}, []() {
 		//
 	});
 
-	std::this_thread::sleep_for(std::chrono::microseconds(100000000));
+	/*while (true)
+	{
+		system("pause>nul");
+		if (GetAsyncKeyState(VK_LEFT))
+		{
+			system("cls");
+			//Lua::RunSync(Console::Path+"..\\bin\\Lua\\MoveLeft.lua");
+		}
+	}*/
+
+	std::this_thread::sleep_for(std::chrono::microseconds(10000000000));
 	return 0;
 }

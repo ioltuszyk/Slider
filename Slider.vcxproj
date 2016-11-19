@@ -149,6 +149,7 @@
     <None Include="test\test.c-snippet" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="bin\Lua\MoveLeft.lua" />
     <Text Include="LICENSE">
       <FileType>Text</FileType>
       <DeploymentContent>false</DeploymentContent>

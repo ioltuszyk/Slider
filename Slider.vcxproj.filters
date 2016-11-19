@@ -75,5 +75,6 @@
     <Text Include="LICENSE">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="bin\Lua\MoveLeft.lua" />
   </ItemGroup>
 </Project>
