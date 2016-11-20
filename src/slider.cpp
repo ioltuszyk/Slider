@@ -26,7 +26,7 @@ int main(int argc, char** argv)
 	Console::PromptMenu("Main Menu", {
 		{"Default", []() 
 			{
-				Lua::RunSync(Console::Path+"..\\bin\\Lua\\Default.lua");
+				Lua::RunSync(Console::Path+"..\\bin\\Lua\\heuristic.lua");
 			}
 		}
 	}, []() {

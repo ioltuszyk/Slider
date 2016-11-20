@@ -26,6 +26,7 @@
     <None Include="bin\Lua\manual_right.lua" />
     <None Include="bin\Lua\manual_up.lua" />
     <None Include="bin\Lua\Default.lua" />
+    <None Include="bin\Lua\heuristic.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">

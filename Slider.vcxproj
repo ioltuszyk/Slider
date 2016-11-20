@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="bin\Lua\classes.lua" />
+    <None Include="bin\Lua\heuristic.lua" />
     <None Include="bin\Lua\init.lua" />
     <None Include="bin\Lua\instructions.lua" />
     <None Include="bin\Lua\manual_down.lua">
