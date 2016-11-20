@@ -18,6 +18,7 @@ void Lua::Init(std::string path)
 	/* C Libraries */
 	lua_getglobal(State, "_G");
 	luaL_register(State, NULL, waitLib);
+	luaL_register(State, NULL, colorLib);
 	/* ... */
 	lua_pop(State, 1);
 

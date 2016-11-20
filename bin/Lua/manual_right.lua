@@ -1,6 +1,10 @@
 print("Manual Input Enabled")
 
+math.randomseed(os.time())
 currentState:Branch()
-currentState = currentState.Tree[2] -- Right
-currentState.Parent = nil
+if (currentState.Tree.Right~=nil) then
+    currentState.Tree.Right:Spawn()
+    currentState = currentState.Tree.Right.Tree[math.random(#currentState.Tree.Right.Tree)]
+    currentState.Parent = nil
+end
 currentState:Print()

@@ -459,25 +459,59 @@ function State:Branch()
 		end
  	end
 
-    if move_left_changed then table.insert(self.Tree, move_left) end
-	if move_right_changed then table.insert(self.Tree, move_right) end
-   	if move_up_changed then table.insert(self.Tree, move_up) end
-	if move_down_changed then table.insert(self.Tree, move_down) end
+    if move_left_changed then self.Tree.Left = move_left else self.Tree.Left = nil end
+	if move_right_changed then self.Tree.Right = move_right else self.Tree.Right = nil end
+   	if move_up_changed then self.Tree.Up =  move_up else self.Tree.Up = nil end
+	if move_down_changed then self.Tree.Down = move_down else self.Tree.Down = nil end
 end
 
+function State:Spawn()
+    for k,v in pairs(self.Tiles) do
+        if (v==0) then
+            local valid_spawn = State.new(self)
+            valid_spawn.Tiles = {unpack(self.Tiles)}
+            valid_spawn.Tiles[k] = math.random(2)*2
+            table.insert(self.Tree, valid_spawn)
+        end
+    end
+end
+
+Colors = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
 function State:Print()
-  print(".-=-=-=-"..string.rep("=-=-=-=-", Board.Width)..".")
-  print("|       "..string.rep("        ", Board.Width).."|")
+    printf(".-=-=-=-"..string.rep("=-=-=-=-", Board.Width)..".\n")
+    printf("|       "..string.rep("        ", Board.Width).."|\n")
   
-  for i=1, Board.Size, Board.Width do
-		local values = {self.Tiles[i], self.Tiles[i+1], self.Tiles[i+2], self.Tiles[i+3]}
+    for i=1, Board.Size, Board.Width do
+	local values = {self.Tiles[i], self.Tiles[i+1], self.Tiles[i+2], self.Tiles[i+3]}
     if i~=Board.Size then
-      print("|\t"..table.concat(values, "\t").."\t|")
-    else
-      print("|\t"..table.concat(values, "\t").."\t||")
+        printf("|\t")
+        local a = (math.log(values[1])/math.log(2))
+        local b = (math.log(values[2])/math.log(2))
+        local c = (math.log(values[3])/math.log(2))
+        local d = (math.log(values[4])/math.log(2))
+        if a>=1 then
+            colorize(tostring(values[1]).."\t", Colors[a])
+        else
+            printf("0\t")
+        end
+        if b>=1 then
+            colorize(tostring(values[2]).."\t", Colors[b])
+        else
+            printf("0\t")
+        end
+        if c>=1 then
+            colorize(tostring(values[3]).."\t", Colors[c])
+        else
+            printf("0\t")
+        end
+        if d>=1 then
+            colorize(tostring(values[4]).."\t", Colors[d])
+        else
+            printf("0\t")
+        end
+        printf("|\n")
     end
   end
-
-  print("|       "..string.rep("        ", Board.Width).."|")
-  print("`-=-=-=-"..string.rep("=-=-=-=-", Board.Width).."'")
+  printf("|       "..string.rep("        ", Board.Width).."|\n")
+  printf("`-=-=-=-"..string.rep("=-=-=-=-", Board.Width).."'\n")
 end
