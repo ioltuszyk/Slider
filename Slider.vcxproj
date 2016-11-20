@@ -143,7 +143,10 @@
     <None Include="doc\empty" />
     <None Include="README.md" />
     <None Include="src\Lua\classes.lua" />
-    <None Include="src\Lua\defaults.lua" />
+    <None Include="src\Lua\Searches\minimax.lua">
+      <FileType>Text</FileType>
+    </None>
+    <None Include="src\Lua\Searches\pure_heuristic.lua" />
     <None Include="src\Lua\heuristic.lua" />
     <None Include="src\Lua\init.lua" />
     <None Include="src\Lua\instructions.lua" />
@@ -155,6 +158,9 @@
     <None Include="src\Lua\manual_right.lua" />
     <None Include="src\Lua\manual_up.lua" />
     <None Include="src\Lua\minimax.lua">
+      <FileType>Text</FileType>
+    </None>
+    <None Include="src\Lua\Searches\random.lua">
       <FileType>Text</FileType>
     </None>
     <None Include="test\Lua\example.lua" />

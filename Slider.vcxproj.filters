@@ -20,7 +20,6 @@
     <None Include="test\Lua\example.lua" />
     <None Include="test\test.c-snippet" />
     <None Include="src\Lua\classes.lua" />
-    <None Include="src\Lua\defaults.lua" />
     <None Include="src\Lua\heuristic.lua" />
     <None Include="src\Lua\init.lua" />
     <None Include="src\Lua\instructions.lua" />
@@ -30,6 +29,9 @@
     <None Include="src\Lua\manual_up.lua" />
     <None Include="src\Lua\minimax.lua" />
     <None Include="src\Lua\manual_return.lua" />
+    <None Include="src\Lua\Searches\random.lua" />
+    <None Include="src\Lua\Searches\pure_heuristic.lua" />
+    <None Include="src\Lua\Searches\minimax.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">

@@ -18,7 +18,7 @@ function empty_tiles(state)
 	if (state.Tiles[14] == 0) then emptytiles = emptytiles + 1 end 
 	if (state.Tiles[15] == 0) then emptytiles = emptytiles + 1 end 
 	if (state.Tiles[16] == 0) then emptytiles = emptytiles + 1 end
-	return emptytiles
+	return 2500*emptytiles
 end
 
 --[[for i=1, 5 do
@@ -52,7 +52,7 @@ function manhatten_dist(ideal, actual)
 	--print("ideal= " .. ideal .. " actual= ".. actual)
 	--print("ax= ".. ax .." ay= ".. ay .." ix= ".. ix .." iy= ".. iy .. " Dist= ".. math.abs(ax - ix) + math.abs(ay - iy))
 
-	return math.abs(ax - ix) + math.abs(ay - iy)
+	return (math.abs(ax - ix) + math.abs(ay - iy))
 end
 
 function monotonicity(state)
@@ -81,7 +81,7 @@ function monotonicity(state)
 	local checked = 1
 	local max = 0
 
-	while checked < 17 do
+	while ideal < 5 do
 		if (tile_dic[1][1] > max and tile_dic[1][4] == false) then max = tile_dic[1][1] index = tile_dic[1][2] end
 		if (tile_dic[2][1] > max and tile_dic[2][4] == false) then max = tile_dic[2][1] index = tile_dic[2][2] end
 		if (tile_dic[3][1] > max and tile_dic[3][4] == false) then max = tile_dic[3][1] index = tile_dic[3][2] end
@@ -111,21 +111,7 @@ function monotonicity(state)
 		--Updating values
 		max = 0
 		checked = checked + 1
-		if (1 <= ideal and ideal < 4) then
-			ideal = ideal + 1
-		elseif (ideal == 4) then
-			ideal = 8
-		elseif (5 < ideal and ideal <= 8) then
-			ideal = ideal - 1
-		elseif (ideal == 5) then
-			ideal = 9
-		elseif (9 <= ideal and ideal < 12) then
-			ideal = ideal + 1
-		elseif (ideal == 12) then
-			ideal = 16
-		elseif (13 < ideal and ideal <= 16) then
-			ideal = ideal - 1
-		end
+		ideal = ideal+1
 		--[[if ideal == 1 then ideal = 2 end
 		if ideal == 2 then ideal = 3 end
 		if ideal == 3 then ideal = 4 end
@@ -146,7 +132,15 @@ function monotonicity(state)
 	end
 	h = 0
 	h = (tile_dic[1][1] * tile_dic[1][3])+(tile_dic[2][1] * tile_dic[2][3])+(tile_dic[3][1] * tile_dic[3][3])+(tile_dic[4][1] * tile_dic[4][3])+(tile_dic[5][1] * tile_dic[5][3])+(tile_dic[6][1] * tile_dic[6][3])+(tile_dic[7][1] * tile_dic[7][3])+(tile_dic[8][1] * tile_dic[8][3])+(tile_dic[9][1] * tile_dic[9][3])+(tile_dic[10][1] * tile_dic[10][3])+(tile_dic[11][1] * tile_dic[11][3])+(tile_dic[12][1] * tile_dic[12][3])+(tile_dic[13][1] * tile_dic[13][3])+(tile_dic[14][1] * tile_dic[14][3])+(tile_dic[15][1] * tile_dic[15][3])+(tile_dic[16][1] * tile_dic[16][3])
-	return -h
+	return -h*0.5
+end
+
+function gscore(state)
+    score = 0
+    for i=1, 16 do
+        score = score + state.Tiles[i]
+    end
+    return score
 end
 --[[
 for i=1, 5 do

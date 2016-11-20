@@ -16,6 +16,7 @@ function State.new(parent)
 	state.Tiles = {}
 	state.Parent = parent
     -- Heuristic-Related
+    state.Heuristic = 0
     state.AdjacencyBonus = 0
     --
 	for i=1, Board.Size do
@@ -23,6 +24,19 @@ function State.new(parent)
 	end
 	state.Tree = {}
 	return state
+end
+--.__mode = "k"
+
+function setmt__gc(t, mt)
+  local prox = newproxy(true)
+  getmetatable(prox).__gc = function() mt.__gc(t) end
+  t[prox] = true
+  return setmetatable(t, mt)
+end
+
+function StateCleanup(self)
+    --print("Deleting tree")
+    --State.Tree = nil
 end
 
 function State:Branch()
