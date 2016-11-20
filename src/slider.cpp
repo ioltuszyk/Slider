@@ -6,27 +6,22 @@ int main(int argc, char** argv)
 	Lua::Init(Console::Path);
 	printf("Displaying Instructions");
 	bool instructions_closed;
-	Lua::RunAsync(Console::Path+"..\\bin\\Lua\\instructions.lua", NULL, &instructions_closed);
+	Lua::RunAsync(Console::Path+"..\\src\\Lua\\instructions.lua", NULL, &instructions_closed);
 
-	std::vector<char *> ellipses_anim = {".", ".", ".", "\b \b", "\b \b", "\b \b"};
-	while (!instructions_closed)
-	{
-		for (auto i:ellipses_anim)
-		{
-			printf(i);
-			if (!instructions_closed)
-			{
-				std::this_thread::sleep_for(std::chrono::microseconds(200000));
-			}
-		}
-	}
+	std::vector<char *> ellipses = {".", ".", ".", "\b \b", "\b \b", "\b \b"};
+	Console::Animation(ellipses, &instructions_closed, 200000);
+Menu:
 	system("cls");
-	Lua::RunSync(Console::Path+"..\\bin\\Lua\\classes.lua");
-
 	Console::PromptMenu("Main Menu", {
 		{"Default", []() 
 			{
-				Lua::RunSync(Console::Path+"..\\bin\\Lua\\heuristic.lua");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\classes.lua");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\defaults.lua");
+			}
+		},
+		{"Heuristic Test", []()
+			{
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\heuristic.lua");
 			}
 		}
 	}, []() {
@@ -37,6 +32,10 @@ int main(int argc, char** argv)
 	while (true)
 	{
 		system("pause>nul");
+		if (GetAsyncKeyState(VK_ESCAPE))
+		{
+			goto Menu; // don't hate me
+		}
 		if (GetAsyncKeyState(VK_SPACE))
 		{
 			manual = !manual;
@@ -57,7 +56,7 @@ int main(int argc, char** argv)
 			if (manual)
 			{ 
 				system("cls");
-				Lua::RunSync(Console::Path+"..\\bin\\Lua\\manual_left.lua");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\manual_left.lua");
 			}
 
 		}
@@ -66,7 +65,7 @@ int main(int argc, char** argv)
 			if (manual)
 			{
 				system("cls");
-				Lua::RunSync(Console::Path+"..\\bin\\Lua\\manual_right.lua");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\manual_right.lua");
 			}
 		}
 		else if (GetAsyncKeyState(VK_UP))
@@ -74,7 +73,7 @@ int main(int argc, char** argv)
 			if (manual)
 			{
 				system("cls");
-				Lua::RunSync(Console::Path+"..\\bin\\Lua\\manual_up.lua");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\manual_up.lua");
 			}
 		}
 		else if (GetAsyncKeyState(VK_DOWN))
@@ -82,7 +81,7 @@ int main(int argc, char** argv)
 			if (manual)
 			{
 				system("cls");
-				Lua::RunSync(Console::Path+"..\\bin\\Lua\\manual_down.lua");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\manual_down.lua");
 			}
 		}
 	}

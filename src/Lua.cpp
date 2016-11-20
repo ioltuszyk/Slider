@@ -23,9 +23,9 @@ void Lua::Init(std::string path)
 	lua_pop(State, 1);
 
 	/* Lua Libraries */
-	char * initPath = (char *)malloc(1+strlen(path.c_str())+strlen("\\..\\bin\\Lua\\init.lua"));
+	char * initPath = (char *)malloc(1+strlen(path.c_str())+strlen("\\..\\src\\Lua\\init.lua"));
 	strcpy(initPath, path.c_str());
-	strcat(initPath, "..\\bin\\Lua\\init.lua");
+	strcat(initPath, "..\\src\\Lua\\init.lua");
 	luaL_dofile(State, initPath);
 	free(initPath);
 }

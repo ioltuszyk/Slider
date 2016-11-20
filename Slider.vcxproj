@@ -140,23 +140,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="bin\Lua\classes.lua" />
-    <None Include="bin\Lua\heuristic.lua" />
-    <None Include="bin\Lua\init.lua" />
-    <None Include="bin\Lua\instructions.lua" />
-    <None Include="bin\Lua\manual_down.lua">
-      <FileType>Text</FileType>
-    </None>
-    <None Include="bin\Lua\manual_right.lua" />
-    <None Include="bin\Lua\manual_up.lua" />
-    <None Include="bin\Lua\Default.lua" />
     <None Include="doc\empty" />
     <None Include="README.md" />
+    <None Include="src\Lua\classes.lua" />
+    <None Include="src\Lua\defaults.lua" />
+    <None Include="src\Lua\heuristic.lua" />
+    <None Include="src\Lua\init.lua" />
+    <None Include="src\Lua\instructions.lua" />
+    <None Include="src\Lua\manual_down.lua" />
+    <None Include="src\Lua\manual_left.lua" />
+    <None Include="src\Lua\manual_right.lua" />
+    <None Include="src\Lua\manual_up.lua" />
     <None Include="test\Lua\example.lua" />
     <None Include="test\test.c-snippet" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="bin\Lua\manual_left.lua" />
     <Text Include="LICENSE">
       <FileType>Text</FileType>
       <DeploymentContent>false</DeploymentContent>

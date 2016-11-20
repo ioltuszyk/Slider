@@ -23,6 +23,7 @@ namespace Console
 	};
 
 	void Init(char**);
+	void Animation(std::vector<char *>, bool*, long long);
 	void SetCursorPos(int, int);
 	void PromptMenu(std::string, std::vector<MenuOption>, std::function<void()>);
 }

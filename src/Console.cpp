@@ -13,6 +13,21 @@ void Console::Init(char** path)
 	Console = GetStdHandle(STD_OUTPUT_HANDLE);
 }
 
+void Console::Animation(std::vector<char *> anim, bool* end, long long wait)
+{
+	while (!end)
+	{
+		for (auto i:anim)
+		{
+			printf(i);
+			if (!end)
+			{
+				std::this_thread::sleep_for(std::chrono::microseconds(wait));
+			}
+		}
+	}
+}
+
 void Console::SetCursorPos(int x, int y)
 {
 	CursorPos.X = x;
@@ -30,15 +45,20 @@ void Console::PromptMenu(std::string title, std::vector<MenuOption> options, std
 	std::function<void()> selectedFunction = options[0].Func;
 
 	SetCursorPos(0, 0); printf(title.c_str());
+	SetCursorPos(0, 2); printf("->");
 	for (auto i:options)
 	{
-		SetCursorPos(2, selectedOption++);	printf(" %s", i.Label.c_str());
+		SetCursorPos(2, selectedOption++);	printf(" %s [ ]", i.Label.c_str());
+		if (selectedOption==3)
+		{
+			SetCursorPos(2+i.Label.size()+3, selectedOption-1); printf("-");
+		}
 	}
 	menuBreak = selectedOption;
 	SetCursorPos(2, (selectedOption++));	printf(" ----------------");
-	SetCursorPos(0, (selectedOption++));	printf("-> Confirm");
+	SetCursorPos(2, (selectedOption++));	printf(" Confirm");
 	SetCursorPos(2, (selectedOption++));	printf(" Return");
-	selectedOption = 4;
+	selectedOption = 2;
 	while (running)
 	{
 		system("pause>nul");
@@ -68,6 +88,18 @@ void Console::PromptMenu(std::string title, std::vector<MenuOption> options, std
 			if ((selectedOption-2)<nOptions-2)
 			{
 				selectedFunction = options[selectedOption-2].Func;
+				int optClear = 2;
+				for (auto i:options)
+				{
+					if (optClear!=selectedOption)
+					{
+						SetCursorPos(2+i.Label.size()+2, optClear++); printf("[ ]");
+					}
+					else
+					{
+						SetCursorPos(2+i.Label.size()+2, optClear++); printf("[-]");
+					}
+				}
 			}
 			else if ((selectedOption-2)==nOptions-2)
 			{

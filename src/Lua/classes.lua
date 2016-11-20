@@ -1,3 +1,5 @@
+collectgarbage()
+
 Board = {
 	Width = 4,
 	Height = 4,
