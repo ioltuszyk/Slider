@@ -15,12 +15,12 @@ void Console::Init(char** path)
 
 void Console::Animation(std::vector<char *> anim, bool* end, long long wait)
 {
-	while (!end)
+	while (!*end)
 	{
 		for (auto i:anim)
 		{
 			printf(i);
-			if (!end)
+			if (!*end)
 			{
 				std::this_thread::sleep_for(std::chrono::microseconds(wait));
 			}

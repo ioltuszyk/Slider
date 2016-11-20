@@ -1,5 +1,7 @@
 collectgarbage()
 
+Colors = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
+
 Board = {
 	Width = 4,
 	Height = 4,
@@ -505,7 +507,6 @@ function State:Spawn()
     end
 end
 
-Colors = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
 function State:Print()
     printf(".-=-=-=-"..string.rep("=-=-=-=-", Board.Width)..".\n")
     printf("|       "..string.rep("        ", Board.Width).."|\n")

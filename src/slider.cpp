@@ -5,7 +5,7 @@ int main(int argc, char** argv)
 	Console::Init(argv);
 	Lua::Init(Console::Path);
 	printf("Displaying Instructions");
-	bool instructions_closed;
+	bool instructions_closed = false;
 	Lua::RunAsync(Console::Path+"..\\src\\Lua\\instructions.lua", NULL, &instructions_closed);
 
 	std::vector<char *> ellipses = {".", ".", ".", "\b \b", "\b \b", "\b \b"};
@@ -49,9 +49,19 @@ Menu:
 			{
 				Console::SetCursorPos(0, 0);
 				printf("Manual Input Disabled");
+				// Run minimax
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\minimax.lua");
 			}
 		}
-		if (GetAsyncKeyState(VK_LEFT))
+		if (GetAsyncKeyState(VK_LCONTROL) & GetAsyncKeyState('Z'))
+		{
+			if (manual)
+			{
+				system("cls");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\manual_return.lua");
+			}
+		}
+		else if (GetAsyncKeyState(VK_LEFT))
 		{
 			if (manual)
 			{ 

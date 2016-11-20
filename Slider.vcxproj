@@ -149,8 +149,14 @@
     <None Include="src\Lua\instructions.lua" />
     <None Include="src\Lua\manual_down.lua" />
     <None Include="src\Lua\manual_left.lua" />
+    <None Include="src\Lua\manual_return.lua">
+      <FileType>Text</FileType>
+    </None>
     <None Include="src\Lua\manual_right.lua" />
     <None Include="src\Lua\manual_up.lua" />
+    <None Include="src\Lua\minimax.lua">
+      <FileType>Text</FileType>
+    </None>
     <None Include="test\Lua\example.lua" />
     <None Include="test\test.c-snippet" />
   </ItemGroup>

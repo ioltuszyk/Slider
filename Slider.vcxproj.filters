@@ -28,6 +28,8 @@
     <None Include="src\Lua\manual_left.lua" />
     <None Include="src\Lua\manual_right.lua" />
     <None Include="src\Lua\manual_up.lua" />
+    <None Include="src\Lua\minimax.lua" />
+    <None Include="src\Lua\manual_return.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">
