@@ -11,7 +11,7 @@ function empty_tiles(state)
 end
 
 state = {
-	Tiles = {2048, 1024, 512, 257, 16, 32, 64, 128, 8, 4, 2, 0, 0, 0, 0, 0}
+	Tiles = {2048, 0, 1024, 512, 257, 16, 32, 64, 128, 8, 4, 2, 0, 0, 0, 0}
 }
 
 --[[time.reset()
@@ -54,7 +54,6 @@ function monotonicity(state)
 	--get largest tile value
 	local ideal = 1
 	local checked = 1
-	local index = 1
 	local max = 0
 
 	while checked < 17 do
@@ -88,7 +87,6 @@ function monotonicity(state)
 		end
 		max = 0
 		checked = checked + 1
-		index = 1
 
 	end
 	h = 0
@@ -98,9 +96,9 @@ function monotonicity(state)
 	return -h
 end
 
---[[time.reset()
+time.reset()
 for n=1, 200000 do
 	h = -monotonicity(state)
 end
 print("Monotonicity: "..h)
-print("Time: " .. time.getElapsed())]]--
+print("Time: " .. time.getElapsed())
