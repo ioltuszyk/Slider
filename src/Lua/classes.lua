@@ -141,7 +141,7 @@ function State:Branch()
 			move_left.Tiles[i-1+k]=values[k]
 		end
     end
-
+     
     local move_right = State.new(self)
     local move_right_changed = false
 	move_right.Tiles = {unpack(self.Tiles)}
