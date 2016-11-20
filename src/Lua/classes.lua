@@ -87,18 +87,18 @@ function State:Branch()
 			if (values[2]==values[3] and values[2]~=0) then
 				values[2]=values[2]*2
 				values[3]=0
-                move_left.AdjacencyBonus = move_left.AdjacencyBonus+values[2]
+                move_left.AdjacencyBonus = move_left.AdjacencyBonus+values[1]
                 move_left_changed = true
 			elseif (values[2]==values[4] and values[2]~=0 and values[3]==0) then
 				values[2]=values[2]*2
 				values[4]=0
-                move_left.AdjacencyBonus = move_left.AdjacencyBonus+values[2]
+                move_left.AdjacencyBonus = move_left.AdjacencyBonus+values[1]
                 move_left_changed = true
 			end
 			if (values[3]==values[4] and values[3]~=0) then
 				values[3]=values[3]*2
 				values[4]=0
-                move_left.AdjacencyBonus = move_left.AdjacencyBonus+values[3]
+                move_left.AdjacencyBonus = move_left.AdjacencyBonus+values[1]
                 move_left_changed = true
 			end
 		end
@@ -203,18 +203,18 @@ function State:Branch()
 			if (values[2]==values[3] and values[2]~=0) then
 				values[2]=values[2]*2
 				values[3]=0
-                move_right.AdjacencyBonus = move_right.AdjacencyBonus+values[2]
+                move_right.AdjacencyBonus = move_right.AdjacencyBonus+values[1]
                 move_right_changed = true
 			elseif (values[2]==values[4] and values[2]~=0 and values[3]==0) then
 				values[2]=values[2]*2
 				values[4]=0
-                move_right.AdjacencyBonus = move_right.AdjacencyBonus+values[2]
+                move_right.AdjacencyBonus = move_right.AdjacencyBonus+values[1]
                 move_right_changed = true
 			end
 			if (values[3]==values[4] and values[3]~=0) then
 				values[3]=values[3]*2
 				values[4]=0
-                move_right.AdjacencyBonus = move_right.AdjacencyBonus+values[3]
+                move_right.AdjacencyBonus = move_right.AdjacencyBonus+values[1]
                 move_right_changed = true
 			end
 		end
@@ -319,18 +319,18 @@ function State:Branch()
 			if (values[2]==values[3] and values[2]~=0) then
 				values[2]=values[2]*2
 				values[3]=0
-                move_up.AdjacencyBonus = move_up.AdjacencyBonus+values[2]
+                move_up.AdjacencyBonus = move_up.AdjacencyBonus+values[1]
                 move_up_changed = true
 			elseif (values[2]==values[4] and values[2]~=0 and values[3]==0) then
 				values[2]=values[2]*2
 				values[4]=0
-                move_up.AdjacencyBonus = move_up.AdjacencyBonus+values[2]
+                move_up.AdjacencyBonus = move_up.AdjacencyBonus+values[1]
                 move_up_changed = true
 			end
 			if (values[3]==values[4] and values[3]~=0) then
 				values[3]=values[3]*2
 				values[4]=0
-                move_up.AdjacencyBonus = move_up.AdjacencyBonus+values[3]
+                move_up.AdjacencyBonus = move_up.AdjacencyBonus+values[1]
                 move_up_changed = true
 			end
 		end
@@ -435,18 +435,18 @@ function State:Branch()
 			if (values[2]==values[3] and values[2]~=0) then
 				values[2]=values[2]*2
 				values[3]=0
-                move_down.AdjacencyBonus = move_down.AdjacencyBonus+values[2]
+                move_down.AdjacencyBonus = move_down.AdjacencyBonus+values[1]
                 move_down_changed = true
 			elseif (values[2]==values[4] and values[2]~=0 and values[3]==0) then
 				values[2]=values[2]*2
 				values[4]=0
-                move_down.AdjacencyBonus = move_down.AdjacencyBonus+values[2]
+                move_down.AdjacencyBonus = move_down.AdjacencyBonus+values[1]
                 move_down_changed = true
 			end
 			if (values[3]==values[4] and values[3]~=0) then
 				values[3]=values[3]*2
 				values[4]=0
-                move_down.AdjacencyBonus = move_down.AdjacencyBonus+values[3]
+                move_down.AdjacencyBonus = move_down.AdjacencyBonus+values[1]
                 move_down_changed = true
 			end
 		end
