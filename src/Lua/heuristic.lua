@@ -11,15 +11,15 @@ function empty_tiles(state)
 end
 
 state = {
-	Tiles = {1, 1, 0, 0, 7, 0, 1, 0, 5, 6, 1, 0, 0, 2, 0, 3}
+	Tiles = {2048, 1024, 512, 257, 16, 32, 64, 128, 8, 4, 2, 0, 0, 0, 0, 0}
 }
 
-time.reset()
+--[[time.reset()
 for n=1, 200000 do
 	h = empty_tiles(state)
 end
 print("Empty Tiles: " ..h)
-print("Time: " .. time.getElapsed())
+print("Time: " .. time.getElapsed())]]--
 
 function manhatten_dist(ideal, actual)
 	if (ideal == actual) then
@@ -95,11 +95,12 @@ function monotonicity(state)
 	for i=1, 16 do
 		h = h + (tile_dic[i][3] * tile_dic[i][1])
 	end
-	return h
+	return -h
 end
-time.reset()
+
+--[[time.reset()
 for n=1, 200000 do
-	h = monotonicity(state)
+	h = -monotonicity(state)
 end
 print("Monotonicity: "..h)
-print("Time: " .. time.getElapsed())
+print("Time: " .. time.getElapsed())]]--
