@@ -1,5 +1,5 @@
 --print("Running")
---state = {Tiles = {2048, 0, 1024, 512, 257, 16, 32, 64, 128, 8, 4, 2, 0, 0, 0, 0}}
+--state = {Tiles = {2048, 0, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 0, 0, 0, 0}}
 function empty_tiles(state)
 	emptytiles = 0
 	if (state.Tiles[1] == 0) then emptytiles = emptytiles + 1 end 
@@ -54,6 +54,123 @@ function manhatten_dist(ideal, actual)
 
 	return (math.abs(ax - ix) + math.abs(ay - iy))
 end
+
+function dist(ideal, actual)
+	--print("ideal= " .. ideal .. " actual= ".. actual)
+	if (ideal == actual) then
+		return 0
+	end
+	if(actual == 4 or actual == 8 or actual == 12 or actual == 16) then
+		ax = 4
+	else
+		ax = actual % 4
+	end
+
+	if(ideal == 4 or ideal == 8 or ideal == 12 or ideal == 16) then
+		ix = 4
+	else
+		ix = ideal % 4
+	end
+
+	--print("ax= ".. ax .." ay= ".. ay .." ix= ".. ix .." iy= ".. iy .. " Dist= ".. math.abs(ax - ix) + math.abs(ay - iy))
+
+	return math.abs(ax - ix)
+end
+function monotonicity2(state)
+	local tile_dic = {}
+	table.insert(tile_dic, {state.Tiles[1], 1, 0, false, 0}) --value, index, row dist, checked, col dist
+	table.insert(tile_dic, {state.Tiles[2], 2, 0, false, 0})
+	table.insert(tile_dic, {state.Tiles[3], 3, 0, false, 0})
+	table.insert(tile_dic, {state.Tiles[4], 4, 0, false, 0})
+
+	table.insert(tile_dic, {state.Tiles[5], 5, 0, false, 0})
+	table.insert(tile_dic, {state.Tiles[6], 6, 0, false, 0})
+	table.insert(tile_dic, {state.Tiles[7], 7, 0, false, 0})
+	table.insert(tile_dic, {state.Tiles[8], 8, 0, false, 0})
+
+	table.insert(tile_dic, {state.Tiles[9], 9, 0, false, 0})
+	table.insert(tile_dic, {state.Tiles[10], 10, 0, false, 0})
+	table.insert(tile_dic, {state.Tiles[11], 11, 0, false, 0})
+	table.insert(tile_dic, {state.Tiles[12], 12, 0, false, 0})
+
+	table.insert(tile_dic, {state.Tiles[13], 13, 0, false, 0})
+	table.insert(tile_dic, {state.Tiles[14], 14, 0, false, 0})
+	table.insert(tile_dic, {state.Tiles[15], 15, 0, false, 0})
+	table.insert(tile_dic, {state.Tiles[16], 16, 0, false, 0})
+
+
+	ideal = 1 --Row 1
+	while ideal < 5 do
+		max = 0
+		if (tile_dic[1][1] > max and tile_dic[1][4] == false) then max = tile_dic[1][1] index = tile_dic[1][2] end
+		if (tile_dic[2][1] > max and tile_dic[2][4] == false) then max = tile_dic[2][1] index = tile_dic[2][2] end
+		if (tile_dic[3][1] > max and tile_dic[3][4] == false) then max = tile_dic[3][1] index = tile_dic[3][2] end
+		if (tile_dic[4][1] > max and tile_dic[4][4] == false) then max = tile_dic[4][1] index = tile_dic[4][2] end
+		if (max == 0) then
+			break
+		end
+		tile_dic[index][3] = dist(ideal, index)
+		tile_dic[index][4] = true
+		ideal = ideal + 1
+	end
+	
+	ideal = 5 --Row 2
+	while ideal < 9 do
+		max = 0
+		if (tile_dic[5][1] > max and tile_dic[5][4] == false) then max = tile_dic[5][1] index = tile_dic[5][2] end
+		if (tile_dic[6][1] > max and tile_dic[6][4] == false) then max = tile_dic[6][1] index = tile_dic[6][2] end
+		if (tile_dic[7][1] > max and tile_dic[7][4] == false) then max = tile_dic[7][1] index = tile_dic[7][2] end
+		if (tile_dic[8][1] > max and tile_dic[8][4] == false) then max = tile_dic[8][1] index = tile_dic[8][2] end
+		if (max == 0) then
+			break
+		end
+		tile_dic[index][3] = dist(ideal, index)
+		tile_dic[index][4] = true
+		ideal = ideal + 1
+	end
+
+	ideal = 9 --Row 3
+	while ideal < 13 do
+		max = 0
+		if (tile_dic[9][1] > max and tile_dic[9][4] == false) then max = tile_dic[9][1] index = tile_dic[9][2] end
+		if (tile_dic[10][1] > max and tile_dic[10][4] == false) then max = tile_dic[10][1] index = tile_dic[10][2] end
+		if (tile_dic[11][1] > max and tile_dic[11][4] == false) then max = tile_dic[11][1] index = tile_dic[11][2] end
+		if (tile_dic[12][1] > max and tile_dic[12][4] == false) then max = tile_dic[12][1] index = tile_dic[12][2] end
+		if (max == 0) then
+			break
+		end
+		tile_dic[index][3] = dist(ideal, index)
+		tile_dic[index][4] = true
+		ideal = ideal + 1
+	end
+
+	ideal = 13 --Row 4
+	while ideal < 17 do
+		max = 0
+		if (tile_dic[13][1] > max and tile_dic[13][4] == false) then max = tile_dic[13][1] index = tile_dic[13][2] end
+		if (tile_dic[14][1] > max and tile_dic[14][4] == false) then max = tile_dic[14][1] index = tile_dic[14][2] end
+		if (tile_dic[15][1] > max and tile_dic[15][4] == false) then max = tile_dic[15][1] index = tile_dic[15][2] end
+		if (tile_dic[16][1] > max and tile_dic[16][4] == false) then max = tile_dic[16][1] index = tile_dic[16][2] end
+		if (max == 0) then
+			break
+		end
+		tile_dic[index][3] = dist(ideal, index)
+		tile_dic[index][4] = true
+		ideal = ideal + 1
+	end
+	h = (tile_dic[1][1] * tile_dic[1][3])+(tile_dic[2][1] * tile_dic[2][3])+(tile_dic[3][1] * tile_dic[3][3])+(tile_dic[4][1] * tile_dic[4][3])+(tile_dic[5][1] * tile_dic[5][3])+(tile_dic[6][1] * tile_dic[6][3])+(tile_dic[7][1] * tile_dic[7][3])+(tile_dic[8][1] * tile_dic[8][3])+(tile_dic[9][1] * tile_dic[9][3])+(tile_dic[10][1] * tile_dic[10][3])+(tile_dic[11][1] * tile_dic[11][3])+(tile_dic[12][1] * tile_dic[12][3])+(tile_dic[13][1] * tile_dic[13][3])+(tile_dic[14][1] * tile_dic[14][3])+(tile_dic[15][1] * tile_dic[15][3])+(tile_dic[16][1] * tile_dic[16][3])
+	return -h
+end
+
+--[[for i=1, 1 do
+	time.reset()
+	for n=1, 1 do
+		h = -monotonicity2(state)
+	end
+	t = time.getElapsed()
+	print("Monotonicity2: "..h)
+	print("Time: " .. t)
+end]]--
 
 function monotonicity(state)
 	local tile_dic = {}
@@ -132,7 +249,7 @@ function monotonicity(state)
 	end
 	h = 0
 	h = (tile_dic[1][1] * tile_dic[1][3])+(tile_dic[2][1] * tile_dic[2][3])+(tile_dic[3][1] * tile_dic[3][3])+(tile_dic[4][1] * tile_dic[4][3])+(tile_dic[5][1] * tile_dic[5][3])+(tile_dic[6][1] * tile_dic[6][3])+(tile_dic[7][1] * tile_dic[7][3])+(tile_dic[8][1] * tile_dic[8][3])+(tile_dic[9][1] * tile_dic[9][3])+(tile_dic[10][1] * tile_dic[10][3])+(tile_dic[11][1] * tile_dic[11][3])+(tile_dic[12][1] * tile_dic[12][3])+(tile_dic[13][1] * tile_dic[13][3])+(tile_dic[14][1] * tile_dic[14][3])+(tile_dic[15][1] * tile_dic[15][3])+(tile_dic[16][1] * tile_dic[16][3])
-	return -h*0.5
+	return -h*0.6
 end
 
 function gscore(state)
