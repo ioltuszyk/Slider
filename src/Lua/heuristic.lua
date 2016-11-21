@@ -1,5 +1,6 @@
 --print("Running")
 --state = {Tiles = {2048, 0, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 0, 0, 0, 0}}
+--state = {Tiles = {0, 0, 0, 0, 512, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
 function empty_tiles(state)
 	emptytiles = 0
 	if (state.Tiles[1] == 0) then emptytiles = emptytiles + 1 end 
@@ -18,7 +19,7 @@ function empty_tiles(state)
 	if (state.Tiles[14] == 0) then emptytiles = emptytiles + 1 end 
 	if (state.Tiles[15] == 0) then emptytiles = emptytiles + 1 end 
 	if (state.Tiles[16] == 0) then emptytiles = emptytiles + 1 end
-	return 2500*emptytiles
+	return 1000*emptytiles
 end
 
 --[[for i=1, 5 do
@@ -71,10 +72,22 @@ function dist(ideal, actual)
 	else
 		ix = ideal % 4
 	end
-
-	--print("ax= ".. ax .." ay= ".. ay .." ix= ".. ix .." iy= ".. iy .. " Dist= ".. math.abs(ax - ix) + math.abs(ay - iy))
-
 	return math.abs(ax - ix)
+end
+function col_dist(ideal, actual)
+	if (ideal == actual) then
+		return 0
+	end
+	if(actual == 1 or actual == 2 or actual == 3 or actual == 4) then ay = 1
+	elseif(actual == 5 or actual == 6 or actual == 7 or actual == 8) then ay = 2
+	elseif(actual == 9 or actual == 10 or actual == 11 or actual == 12) then ay = 3
+	elseif(actual == 13 or actual == 14 or actual == 15 or actual == 16) then ay = 4 end
+
+	if(ideal == 1 or ideal == 2 or ideal == 3 or ideal == 4) then iy = 1
+	elseif(ideal == 5 or ideal == 6 or ideal == 7 or ideal == 8) then iy = 2
+	elseif(ideal == 9 or ideal == 10 or ideal == 11 or ideal == 12) then iy = 3
+	elseif(ideal == 13 or ideal == 14 or ideal == 15 or ideal == 16) then iy = 4 end
+	return math.abs(ay - iy)
 end
 function monotonicity2(state)
 	local tile_dic = {}
@@ -158,7 +171,82 @@ function monotonicity2(state)
 		tile_dic[index][4] = true
 		ideal = ideal + 1
 	end
+
+	ideal = 1 --col 1
+	while true do
+		max = 0
+		if (tile_dic[1][1] > max and tile_dic[1][4] == true) then max = tile_dic[1][1] index = tile_dic[1][2] end
+		if (tile_dic[5][1] > max and tile_dic[5][4] == true) then max = tile_dic[5][1] index = tile_dic[5][2] end
+		if (tile_dic[9][1] > max and tile_dic[9][4] == true) then max = tile_dic[9][1] index = tile_dic[9][2] end
+		if (tile_dic[13][1] > max and tile_dic[13][4] == true) then max = tile_dic[13][1] index = tile_dic[13][2] end
+		if (max == 0) then
+			break
+		end
+		tile_dic[index][5] = col_dist(ideal, index)
+		tile_dic[index][4] = false
+		if ideal == 1 then ideal = 5 
+		elseif ideal == 5 then ideal = 9
+		elseif ideal == 9 then ideal = 13
+		elseif ideal == 13 then break end
+	end
+
+	ideal = 2 --col 2
+	while true do
+		max = 0
+		if (tile_dic[2][1] > max and tile_dic[2][4] == true) then max = tile_dic[2][1] index = tile_dic[2][2] end
+		if (tile_dic[6][1] > max and tile_dic[6][4] == true) then max = tile_dic[6][1] index = tile_dic[6][2] end
+		if (tile_dic[10][1] > max and tile_dic[10][4] == true) then max = tile_dic[10][1] index = tile_dic[10][2] end
+		if (tile_dic[14][1] > max and tile_dic[14][4] == true) then max = tile_dic[14][1] index = tile_dic[14][2] end
+		if (max == 0) then
+			break
+		end
+		tile_dic[index][5] = col_dist(ideal, index)
+		tile_dic[index][4] = false
+		if ideal == 2 then ideal = 6 
+		elseif ideal == 6 then ideal = 10
+		elseif ideal == 10 then ideal = 14
+		elseif ideal == 14 then break end
+	end
+
+	ideal = 3 --col 3
+	while true do
+		max = 0
+		if (tile_dic[3][1] > max and tile_dic[3][4] == true) then max = tile_dic[3][1] index = tile_dic[3][2] end
+		if (tile_dic[7][1] > max and tile_dic[7][4] == true) then max = tile_dic[7][1] index = tile_dic[7][2] end
+		if (tile_dic[11][1] > max and tile_dic[11][4] == true) then max = tile_dic[11][1] index = tile_dic[11][2] end
+		if (tile_dic[15][1] > max and tile_dic[15][4] == true) then max = tile_dic[15][1] index = tile_dic[15][2] end
+		if (max == 0) then
+			break
+		end
+		tile_dic[index][5] = col_dist(ideal, index)
+		tile_dic[index][4] = false
+		if ideal == 3 then ideal = 7 
+		elseif ideal == 7 then ideal = 11
+		elseif ideal == 11 then ideal = 15
+		elseif ideal == 15 then break end
+	end
+
+		ideal = 4 --col 4
+	while true do
+		max = 0
+		if (tile_dic[4][1] > max and tile_dic[4][4] == true) then max = tile_dic[4][1] index = tile_dic[4][2] end
+		if (tile_dic[8][1] > max and tile_dic[8][4] == true) then max = tile_dic[8][1] index = tile_dic[8][2] end
+		if (tile_dic[12][1] > max and tile_dic[12][4] == true) then max = tile_dic[12][1] index = tile_dic[12][2] end
+		if (tile_dic[16][1] > max and tile_dic[16][4] == true) then max = tile_dic[16][1] index = tile_dic[16][2] end
+		if (max == 0) then
+			break
+		end
+		tile_dic[index][5] = col_dist(ideal, index)
+		tile_dic[index][4] = false
+		if ideal == 4 then ideal = 8 
+		elseif ideal == 8 then ideal = 12
+		elseif ideal == 12 then ideal = 16
+		elseif ideal == 16 then break end
+	end
+
+
 	h = (tile_dic[1][1] * tile_dic[1][3])+(tile_dic[2][1] * tile_dic[2][3])+(tile_dic[3][1] * tile_dic[3][3])+(tile_dic[4][1] * tile_dic[4][3])+(tile_dic[5][1] * tile_dic[5][3])+(tile_dic[6][1] * tile_dic[6][3])+(tile_dic[7][1] * tile_dic[7][3])+(tile_dic[8][1] * tile_dic[8][3])+(tile_dic[9][1] * tile_dic[9][3])+(tile_dic[10][1] * tile_dic[10][3])+(tile_dic[11][1] * tile_dic[11][3])+(tile_dic[12][1] * tile_dic[12][3])+(tile_dic[13][1] * tile_dic[13][3])+(tile_dic[14][1] * tile_dic[14][3])+(tile_dic[15][1] * tile_dic[15][3])+(tile_dic[16][1] * tile_dic[16][3])
+	h = h + (tile_dic[1][1] * tile_dic[1][5])+(tile_dic[2][1] * tile_dic[2][5])+(tile_dic[3][1] * tile_dic[3][5])+(tile_dic[4][1] * tile_dic[4][5])+(tile_dic[5][1] * tile_dic[5][5])+(tile_dic[6][1] * tile_dic[6][5])+(tile_dic[7][1] * tile_dic[7][5])+(tile_dic[8][1] * tile_dic[8][5])+(tile_dic[9][1] * tile_dic[9][5])+(tile_dic[10][1] * tile_dic[10][5])+(tile_dic[11][1] * tile_dic[11][5])+(tile_dic[12][1] * tile_dic[12][5])+(tile_dic[13][1] * tile_dic[13][5])+(tile_dic[14][1] * tile_dic[14][5])+(tile_dic[15][1] * tile_dic[15][5])+(tile_dic[16][1] * tile_dic[16][5])
 	return -h
 end
 

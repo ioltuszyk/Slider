@@ -13,7 +13,7 @@ while (true) do
     local decisions = {}
     currentState:Branch()
     for k, v in pairs(currentState.Tree) do
-	    local h = empty_tiles(currentState.Tree[k]) + currentState.Tree[k].AdjacencyBonus*0.25
+	    local h = monotonicity2(currentState.Tree[k]) + empty_tiles(currentState.Tree[k]) + currentState.Tree[k].AdjacencyBonus*0.25
 	    decisions[k] = h
     end
     local max = -math.huge

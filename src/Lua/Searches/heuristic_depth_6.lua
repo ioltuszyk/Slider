@@ -37,8 +37,8 @@ function Search()
                                                         l:Branch()
                                                         if (l.Tree.Left~=nil or l.Tree.Right~=nil or l.Tree.Up~=nil or l.Tree.Down~=nil) then
                                                             for n, o in pairs(l.Tree) do
-                                                                local heuristic = monotonicity(o) + empty_tiles(o) + o.AdjacencyBonus*0.25
-                                                                o.Heuristic = heuristic
+                                                                local heuristic = monotonicity2(o)*2 + empty_tiles(o) + o.AdjacencyBonus*0.25
+								                                o.Heuristic = heuristic
                                                                 table.insert(leaf_nodes, o)
                                                                 total=total+1
                                                             end
@@ -78,10 +78,13 @@ while (true) do
 
     clear()
     print("Current Score: "..gscore(currentState).."\n")
+	
+	currentState:Print()
     if (desiredState==nil) then
         break
     end
     print("Trying to approach state:")
+	print("Heuristic: "..desiredState.Heuristic)-- Mono: "..monotonicity2(desiredState)*2.." Empty Tiles: "..empty_tiles(desiredState).." Adj: "..desiredState.AdjacencyBonus*0.25)
     desiredState:Print()
     print("By moving to...")
     currentState:Print()
