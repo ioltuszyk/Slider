@@ -13,11 +13,11 @@ int main(int argc, char** argv)
 Menu:
 	system("cls");
 	Console::PromptMenu("Main Menu", {
-		{"Minimax", []()
+		{"Expectimax", []()
 			{
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\classes.lua");
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\heuristic.lua");
-				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\minimax.lua");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\expectimax.lua");
 			}
 		},
 		{"Heuristic Search (Depth 6)", []()
@@ -47,7 +47,7 @@ Menu:
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\random.lua");
 			}
 		},
-		{"Heuristic Test", []()
+		{"Test", []()
 			{
 				Lua::RunSync(Console::Path + "..\\src\\Lua\\heuristic.lua");
 			}

@@ -17,27 +17,27 @@ function Search()
 
     leaf_nodes = {}
     total = 0
-    if (currentState.Tree.Left~=nil or currentState.Tree.Right~=nil or currentState.Tree.Up~=nil or currentState.Tree.Down~=nil) then
+    if (currentState.MoveCount>0) then
         for a, b in pairs(currentState.Tree) do
 	        b:Spawn()
             if (#b.Tree~=0) then
                 for c, d in pairs(b.Tree) do
                     d:Branch()
-                    if (d.Tree.Left~=nil or d.Tree.Right~=nil or d.Tree.Up~=nil or d.Tree.Down~=nil) then
+                    if (d.MoveCount>0) then
                         for e, f in pairs(d.Tree) do
 	                        f:Spawn()
                             if (#f.Tree~=0) then
                                     for g, h in pairs(f.Tree) do
                                         h:Branch()
-                                        if (h.Tree.Left~=nil or h.Tree.Right~=nil or h.Tree.Up~=nil or h.Tree.Down~=nil) then
+                                        if (h.MoveCount>0) then
                                             for i, j in pairs(h.Tree) do
 	                                            j:Spawn()
                                                 if (#j.Tree~=0) then
                                                     for k, l in pairs(j.Tree) do
                                                         l:Branch()
-                                                        if (l.Tree.Left~=nil or l.Tree.Right~=nil or l.Tree.Up~=nil or l.Tree.Down~=nil) then
+                                                        if (l.MoveCount>0) then
                                                             for n, o in pairs(l.Tree) do
-                                                                local heuristic = monotonicity2(o)*2 + empty_tiles(o) + o.AdjacencyBonus*0.25
+                                                                local heuristic = Heuristics.Emptiness(o)*2 + Heuristics.Monotonicity(o)/gscore(o)
 								                                o.Heuristic = heuristic
                                                                 table.insert(leaf_nodes, o)
                                                                 total=total+1
@@ -77,20 +77,24 @@ while (true) do
     end
 
     clear()
-    print("Current Score: "..gscore(currentState).."\n")
-	
+	print("Current Score: "..gscore(currentState))
+	if (desiredState==nil) then
+        currentState:Print()
+        wait(2.5)
+		break
+	end
+	print("Trying to approach state:")
+	desiredState:Print()
+	print("By moving to...")
 	currentState:Print()
-    if (desiredState==nil) then
-        break
-    end
-    print("Trying to approach state:")
-	print("Heuristic: "..desiredState.Heuristic)-- Mono: "..monotonicity2(desiredState)*2.." Empty Tiles: "..empty_tiles(desiredState).." Adj: "..desiredState.AdjacencyBonus*0.25)
-    desiredState:Print()
-    print("By moving to...")
-    currentState:Print()
-    print("Spawning...")
-    currentState.Tree = {}
-    currentState:Spawn()
-    currentState = currentState.Tree[math.random(#currentState.Tree)]
-    currentState:Print()
+	print("Spawning...")
+	currentState.Tree = {}
+	currentState:Spawn()
+	if (#currentState.Tree)~=0 then
+		currentState = currentState.Tree[math.random(#currentState.Tree)]
+		currentState:Print()
+	else
+		currentState:Print()
+		break
+	end
 end

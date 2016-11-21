@@ -151,7 +151,7 @@
     <None Include="src\Lua\Searches\heuristic_depth_6.lua">
       <FileType>Text</FileType>
     </None>
-    <None Include="src\Lua\Searches\minimax.lua" />
+    <None Include="src\Lua\Searches\expectimax.lua" />
     <None Include="src\Lua\Searches\heuristic_only.lua" />
     <None Include="src\Lua\heuristic.lua" />
     <None Include="src\Lua\init.lua" />
