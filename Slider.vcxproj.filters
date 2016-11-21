@@ -24,9 +24,10 @@
     <None Include="src\Lua\init.lua" />
     <None Include="src\Lua\instructions.lua" />
     <None Include="src\Lua\Searches\random.lua" />
-    <None Include="src\Lua\Searches\pure_heuristic.lua" />
-    <None Include="src\Lua\Searches\heuristic_only_search.lua" />
     <None Include="src\Lua\Searches\minimax.lua" />
+    <None Include="src\Lua\Searches\heuristic_depth_4.lua" />
+    <None Include="src\Lua\Searches\heuristic_depth_6.lua" />
+    <None Include="src\Lua\Searches\heuristic_only.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">

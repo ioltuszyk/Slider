@@ -16,7 +16,7 @@ function State.new(parent)
 	state.Tiles = {}
 	state.Parent = parent
     -- Heuristic-Related
-    state.Heuristic = 0
+    state.Heuristic = -math.huge
     state.AdjacencyBonus = 0
     --
 	for i=1, Board.Size do

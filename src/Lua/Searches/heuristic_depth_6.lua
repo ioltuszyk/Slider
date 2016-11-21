@@ -12,45 +12,59 @@ currentState:Print()
 local decisions = {}
 local leaf_nodes = {}
 local total = 0
-function Minimax()
+function Search()
     currentState:Branch()
     decisions = {}
     leaf_nodes = {}
     total = 0
-    for a, b in pairs(currentState.Tree) do
-	    b:Spawn()
-        for c, d in pairs(b.Tree) do
-            d:Branch()
-            for e, f in pairs(d.Tree) do
-	            f:Spawn()
-                for g, h in pairs(f.Tree) do
-                    h:Branch()
-                    for i, j in pairs(h.Tree) do
-	                    j:Spawn()
-                        for k, l in pairs(j.Tree) do
-                            l:Branch()
-                            for n, o in pairs(l.Tree) do
-                                local heuristic = monotonicity(o) + empty_tiles(o) + o.AdjacencyBonus*0.25
-                                o.Heuristic = heuristic
-                                table.insert(leaf_nodes, o)
-                                total=total+1
-                            end
-                            l.Tree = nil
+    if (currentState.Tree.Left~=nil or currentState.Tree.Right~=nil or currentState.Tree.Up~=nil or currentState.Tree.Down~=nil) then
+        for a, b in pairs(currentState.Tree) do
+	        b:Spawn()
+            if (#b.Tree~=0) then
+                for c, d in pairs(b.Tree) do
+                    d:Branch()
+                    if (d.Tree.Left~=nil or d.Tree.Right~=nil or d.Tree.Up~=nil or d.Tree.Down~=nil) then
+                        for e, f in pairs(d.Tree) do
+	                        f:Spawn()
+                            if (#f.Tree~=0) then
+                                    for g, h in pairs(f.Tree) do
+                                        h:Branch()
+                                        if (h.Tree.Left~=nil or h.Tree.Right~=nil or h.Tree.Up~=nil or h.Tree.Down~=nil) then
+                                            for i, j in pairs(h.Tree) do
+	                                            j:Spawn()
+                                                if (#j.Tree~=0) then
+                                                    for k, l in pairs(j.Tree) do
+                                                        l:Branch()
+                                                        if (l.Tree.Left~=nil or l.Tree.Right~=nil or l.Tree.Up~=nil or l.Tree.Down~=nil) then
+                                                            for n, o in pairs(l.Tree) do
+                                                                local heuristic = monotonicity(o) + empty_tiles(o) + o.AdjacencyBonus*0.25
+                                                                o.Heuristic = heuristic
+                                                                table.insert(leaf_nodes, o)
+                                                                total=total+1
+                                                            end
+                                                        end
+                                                        l.Tree = nil
+                                                    end
+                                                end
+                                                j.Tree = nil
+                                            end
+                                        end
+                                        h.Tree = nil
+                                    end
+                                end
+                            f.Tree = nil
                         end
-                        j.Tree = nil
                     end
-                    h.Tree = nil
+                    d.Tree = nil
                 end
-                f.Tree = nil
             end
-            d.Tree = nil
+            b.Tree = nil
         end
-        b.Tree = nil
     end
 end
 
 while (true) do
-    Minimax()
+    Search()
 
     local max = -math.huge
     local desiredState

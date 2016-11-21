@@ -145,11 +145,14 @@
     <None Include="doc\empty" />
     <None Include="README.md" />
     <None Include="src\Lua\classes.lua" />
-    <None Include="src\Lua\Searches\heuristic_only_search.lua">
+    <None Include="src\Lua\Searches\heuristic_depth_4.lua">
+      <FileType>Text</FileType>
+    </None>
+    <None Include="src\Lua\Searches\heuristic_depth_6.lua">
       <FileType>Text</FileType>
     </None>
     <None Include="src\Lua\Searches\minimax.lua" />
-    <None Include="src\Lua\Searches\pure_heuristic.lua" />
+    <None Include="src\Lua\Searches\heuristic_only.lua" />
     <None Include="src\Lua\heuristic.lua" />
     <None Include="src\Lua\init.lua" />
     <None Include="src\Lua\instructions.lua" />
