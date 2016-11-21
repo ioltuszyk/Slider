@@ -11,12 +11,10 @@ currentState:Print()
 
 local decisions = {}
 local leaf_nodes = {}
-local total = 0
 function Minimax()
     currentState:Branch()
     decisions = {}
     leaf_nodes = {}
-    total = 0
     for a, b in pairs(currentState.Tree) do
 	    b:Spawn()
         for c, d in pairs(b.Tree) do
@@ -33,7 +31,6 @@ function Minimax()
                                 local heuristic = monotonicity(o) + empty_tiles(o) + o.AdjacencyBonus*0.25
                                 o.Heuristic = heuristic
                                 table.insert(leaf_nodes, o)
-                                total=total+1
                             end
                             l.Tree = nil
                         end
@@ -63,6 +60,10 @@ while (true) do
     end
 
     clear()
+    print(gscore(currentState))
+    if (desiredState==nil) then
+        break
+    end
     print("Trying to approach state:")
     desiredState:Print()
     print("By moving to...")

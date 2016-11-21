@@ -24,17 +24,9 @@ function Minimax()
                 for g, h in pairs(f.Tree) do
                     h:Branch()
                     for i, j in pairs(h.Tree) do
-	                    j:Spawn()
-                        for k, l in pairs(j.Tree) do
-                            l:Branch()
-                            for n, o in pairs(l.Tree) do
-                                local heuristic = monotonicity(o) + empty_tiles(o) + o.AdjacencyBonus*0.25
-                                o.Heuristic = heuristic
-                                table.insert(leaf_nodes, o)
-                            end
-                            l.Tree = nil
-                        end
-                        j.Tree = nil
+	                    local heuristic = monotonicity(j) + empty_tiles(j) + j.AdjacencyBonus*0.25
+                        j.Heuristic = heuristic
+                        table.insert(leaf_nodes, j)
                     end
                     h.Tree = nil
                 end
@@ -55,7 +47,7 @@ while (true) do
         if (max<v.Heuristic) then
             max = v.Heuristic
             desiredState = v
-            currentState = v.Parent.Parent.Parent.Parent.Parent.Parent
+            currentState = v.Parent.Parent.Parent.Parent
         end
     end
 

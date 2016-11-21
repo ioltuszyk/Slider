@@ -23,15 +23,10 @@
     <None Include="src\Lua\heuristic.lua" />
     <None Include="src\Lua\init.lua" />
     <None Include="src\Lua\instructions.lua" />
-    <None Include="src\Lua\manual_down.lua" />
-    <None Include="src\Lua\manual_left.lua" />
-    <None Include="src\Lua\manual_right.lua" />
-    <None Include="src\Lua\manual_up.lua" />
-    <None Include="src\Lua\minimax.lua" />
-    <None Include="src\Lua\manual_return.lua" />
     <None Include="src\Lua\Searches\random.lua" />
     <None Include="src\Lua\Searches\pure_heuristic.lua" />
     <None Include="src\Lua\Searches\heuristic_only_search.lua" />
+    <None Include="src\Lua\Searches\minimax.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">

@@ -20,14 +20,21 @@ Menu:
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\minimax.lua");
 			}
 		},
-		{"Heuristic-Only Finite-Depth Search", []()
+		{"Heuristic Search (Depth 6)", []()
 			{
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\classes.lua");
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\heuristic.lua");
-				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\heuristic_only_search.lua");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\heuristic_depth_6.lua");
 			}
 		},
-		{"Pure Heuristic", []() 
+		{"Heuristic Search (Depth 4)", []()
+			{
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\classes.lua");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\heuristic.lua");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\heuristic_depth_4.lua");
+			}
+		},
+		{"Heuristic Only", []() 
 			{
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\classes.lua");
 				Lua::RunSync(Console::Path + "..\\src\\Lua\\heuristic.lua");
@@ -44,73 +51,13 @@ Menu:
 		//
 	});
 
-	bool manual = true;
 	while (true)
 	{
 		system("pause>nul");
 		if (GetAsyncKeyState(VK_ESCAPE))
 		{
-			goto Menu; // don't hate me
+			goto Menu;
 		}
-		if (GetAsyncKeyState(VK_SPACE))
-		{
-			manual = !manual;
-			if (manual)
-			{
-				Console::SetCursorPos(0, 0);
-				printf("Manual Input Enabled ");
-				Console::SetCursorPos(20, 0);
-			}
-			else
-			{
-				Console::SetCursorPos(0, 0);
-				printf("Manual Input Disabled");
-				// Run minimax
-				Lua::RunSync(Console::Path+"..\\src\\Lua\\minimax.lua");
-			}
-		}
-		if (GetAsyncKeyState(VK_LCONTROL) & GetAsyncKeyState('Z'))
-		{
-			if (manual)
-			{
-				system("cls");
-				Lua::RunSync(Console::Path+"..\\src\\Lua\\manual_return.lua");
-			}
-		}
-		else if (GetAsyncKeyState(VK_LEFT))
-		{
-			if (manual)
-			{ 
-				system("cls");
-				Lua::RunSync(Console::Path+"..\\src\\Lua\\manual_left.lua");
-			}
-
-		}
-		else if (GetAsyncKeyState(VK_RIGHT))
-		{
-			if (manual)
-			{
-				system("cls");
-				Lua::RunSync(Console::Path+"..\\src\\Lua\\manual_right.lua");
-			}
-		}
-		else if (GetAsyncKeyState(VK_UP))
-		{
-			if (manual)
-			{
-				system("cls");
-				Lua::RunSync(Console::Path+"..\\src\\Lua\\manual_up.lua");
-			}
-		}
-		else if (GetAsyncKeyState(VK_DOWN))
-		{
-			if (manual)
-			{
-				system("cls");
-				Lua::RunSync(Console::Path+"..\\src\\Lua\\manual_down.lua");
-			}
-		}
+		return 0;
 	}
-
-	return 0;
 }
