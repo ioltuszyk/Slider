@@ -115,6 +115,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)include\LuaJIT;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -131,6 +132,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)include\LuaJIT;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -143,7 +145,7 @@
     <None Include="doc\empty" />
     <None Include="README.md" />
     <None Include="src\Lua\classes.lua" />
-    <None Include="src\Lua\Searches\minimax.lua">
+    <None Include="src\Lua\Searches\heuristic_only_search.lua">
       <FileType>Text</FileType>
     </None>
     <None Include="src\Lua\Searches\pure_heuristic.lua" />

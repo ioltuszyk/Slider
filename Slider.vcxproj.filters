@@ -31,7 +31,7 @@
     <None Include="src\Lua\manual_return.lua" />
     <None Include="src\Lua\Searches\random.lua" />
     <None Include="src\Lua\Searches\pure_heuristic.lua" />
-    <None Include="src\Lua\Searches\minimax.lua" />
+    <None Include="src\Lua\Searches\heuristic_only_search.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">

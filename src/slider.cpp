@@ -20,6 +20,13 @@ Menu:
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\minimax.lua");
 			}
 		},
+		{"Heuristic-Only Finite-Depth Search", []()
+			{
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\classes.lua");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\heuristic.lua");
+				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\heuristic_only_search.lua");
+			}
+		},
 		{"Pure Heuristic", []() 
 			{
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\classes.lua");
