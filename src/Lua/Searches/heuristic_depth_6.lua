@@ -9,12 +9,12 @@ math.randomseed(os.time())
 currentState.Tiles[math.random(#currentState.Tiles)] = math.random(2)*2
 currentState:Print()
 
-local decisions = {}
+
 local leaf_nodes = {}
 local total = 0
 function Search()
     currentState:Branch()
-    decisions = {}
+
     leaf_nodes = {}
     total = 0
     if (currentState.Tree.Left~=nil or currentState.Tree.Right~=nil or currentState.Tree.Up~=nil or currentState.Tree.Down~=nil) then

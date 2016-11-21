@@ -11,7 +11,6 @@ for i=1, 32 do
 	currentState.Tiles[math.random(#currentState.Tiles)] = math.random(2)*2
 	currentState:Print()
 
-	local decisions = {}
 	local leaf_nodes = {}
 	function Search()
 		currentState:Branch()
