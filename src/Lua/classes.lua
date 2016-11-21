@@ -9,10 +9,12 @@ Board = {
 }
 
 State = {}
-State.__index = State
 function State.new(parent)
 	local state = {}
-	setmetatable(state, State)
+	setmetatable(state, {
+        __index=State
+    })
+
 	state.Tiles = {}
 	state.Parent = parent
     -- Heuristic-Related
@@ -23,20 +25,16 @@ function State.new(parent)
 		state.Tiles[i] = 1
 	end
 	state.Tree = {}
+    state.MoveCount = 0
+    setmetatable(state.Tree, {
+        __newindex = function (t,k,v)
+            if (k=="Left" or k=="Right" or k=="Up" or k=="Down") then
+                state.MoveCount = state.MoveCount + 1
+            end
+            rawset(t,k,v)
+        end
+    })
 	return state
-end
---.__mode = "k"
-
-function setmt__gc(t, mt)
-  local prox = newproxy(true)
-  getmetatable(prox).__gc = function() mt.__gc(t) end
-  t[prox] = true
-  return setmetatable(t, mt)
-end
-
-function StateCleanup(self)
-    --print("Deleting tree")
-    --State.Tree = nil
 end
 
 function State:Branch()
