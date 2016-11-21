@@ -45,7 +45,7 @@ void Console::PromptMenu(std::string title, std::vector<MenuOption> options, std
 	std::function<void()> selectedFunction = options[0].Func;
 
 	SetCursorPos(0, 0); printf(title.c_str());
-	SetCursorPos(0, 2); printf("->");
+	SetCursorPos(0, 2); printf(" >");
 	for (auto i:options)
 	{
 		SetCursorPos(2, selectedOption++);	printf(" %s [ ]", i.Label.c_str());
@@ -59,6 +59,7 @@ void Console::PromptMenu(std::string title, std::vector<MenuOption> options, std
 	SetCursorPos(2, (selectedOption++));	printf(" Confirm");
 	SetCursorPos(2, (selectedOption++));	printf(" Return");
 	selectedOption = 2;
+	SetCursorPos(0, selectedOption);
 	while (running)
 	{
 		system("pause>nul");
@@ -70,7 +71,8 @@ void Console::PromptMenu(std::string title, std::vector<MenuOption> options, std
 			{
 				selectedOption++;
 			}
-			SetCursorPos(0, selectedOption); printf("->");
+			SetCursorPos(0, selectedOption); printf(" >");
+			SetCursorPos(0, selectedOption);
 			continue;
 		}
 		if (GetAsyncKeyState(VK_UP)&&selectedOption!=2)
@@ -80,7 +82,8 @@ void Console::PromptMenu(std::string title, std::vector<MenuOption> options, std
 			{
 				selectedOption--;
 			}
-			SetCursorPos(0, selectedOption); printf("->");
+			SetCursorPos(0, selectedOption); printf(" >");
+			SetCursorPos(0, selectedOption);
 			continue;
 		}
 		if (GetAsyncKeyState(VK_RETURN))
@@ -94,10 +97,12 @@ void Console::PromptMenu(std::string title, std::vector<MenuOption> options, std
 					if (optClear!=selectedOption)
 					{
 						SetCursorPos(2+i.Label.size()+2, optClear++); printf("[ ]");
+						SetCursorPos(0, selectedOption);
 					}
 					else
 					{
 						SetCursorPos(2+i.Label.size()+2, optClear++); printf("[-]");
+						SetCursorPos(0, selectedOption);
 					}
 				}
 			}
