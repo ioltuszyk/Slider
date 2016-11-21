@@ -48,7 +48,8 @@ Menu:
 			}
 		}
 	}, []() {
-		//
+		//Cleanup?
+		exit(0);
 	});
 
 	while (true)

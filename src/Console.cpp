@@ -57,7 +57,7 @@ void Console::PromptMenu(std::string title, std::vector<MenuOption> options, std
 	menuBreak = selectedOption;
 	SetCursorPos(2, (selectedOption++));	printf(" ----------------");
 	SetCursorPos(2, (selectedOption++));	printf(" Confirm");
-	SetCursorPos(2, (selectedOption++));	printf(" Return");
+	SetCursorPos(2, (selectedOption++));	printf(" Exit");
 	selectedOption = 2;
 	SetCursorPos(0, selectedOption);
 	while (running)
