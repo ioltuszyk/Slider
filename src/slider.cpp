@@ -20,21 +20,21 @@ Menu:
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\expectimax.lua");
 			}
 		},
-		{"Heuristic Search (Depth 6)", []()
+		{"Optimistic Search (Depth 6)", []()
 			{
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\classes.lua");
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\heuristic.lua");
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\heuristic_depth_6.lua");
 			}
 		},
-		{"Heuristic Search (Depth 4)", []()
+		{"Optimistic Search (Depth 4)", []()
 			{
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\classes.lua");
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\heuristic.lua");
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\heuristic_depth_4.lua");
 			}
 		},
-		{"Heuristic Only", []() 
+		{"Local Optimum Search (Greedy)", []() 
 			{
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\classes.lua");
 				Lua::RunSync(Console::Path + "..\\src\\Lua\\heuristic.lua");
