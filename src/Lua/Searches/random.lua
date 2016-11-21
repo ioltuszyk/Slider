@@ -24,5 +24,5 @@ while (true) do
         break
     end
 end
-print(gscore(currentState))
+print(Heuristics.Score(currentState))
 print("Time: " .. time.getElapsed())

@@ -144,6 +144,9 @@
   <ItemGroup>
     <None Include="doc\empty" />
     <None Include="README.md" />
+    <None Include="src\Lua\Backup\heuristic.lua">
+      <FileType>Text</FileType>
+    </None>
     <None Include="src\Lua\classes.lua" />
     <None Include="src\Lua\Searches\heuristic_depth_4.lua">
       <FileType>Text</FileType>

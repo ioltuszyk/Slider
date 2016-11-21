@@ -28,6 +28,7 @@
     <None Include="src\Lua\Searches\heuristic_depth_6.lua" />
     <None Include="src\Lua\Searches\heuristic_only.lua" />
     <None Include="src\Lua\Searches\expectimax.lua" />
+    <None Include="src\Lua\Backup\heuristic.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\slider.cpp">

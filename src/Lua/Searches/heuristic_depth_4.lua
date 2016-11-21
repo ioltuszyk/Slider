@@ -28,7 +28,7 @@ function Search()
 									h:Branch()
 									if (h.MoveCount>0) then
 										for i, j in pairs(h.Tree) do
-											local heuristic = Heuristics.Emptiness(j)*2 + Heuristics.Monotonicity(j)/gscore(j)
+											local heuristic = Heuristics.Emptiness(j)*2 + Heuristics.Monotonicity(j)/Heuristics.Score(j)
 											j.Heuristic = heuristic
 											table.insert(leaf_nodes, j)
 										end
@@ -61,7 +61,7 @@ while (true) do
 	end
 
 	clear()
-	print("Current Score: "..gscore(currentState))
+	print("Current Score: "..Heuristics.Score(currentState))
 	if (desiredState==nil) then
         currentState:Print()
         wait(2.5)

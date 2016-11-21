@@ -1,15 +1,27 @@
-function Heuristics.Gradient(state)
-    
-end
-
 --[[for i=1, 5 do
 	time.reset()
 	for n=1, 200000 do
-		h = empty_tiles(state)
+		h = Heuristics.Emptiness(state)
 	end
 	t = time.getElapsed()
 	print("Empty Tiles: " ..h)
 	print("Time: " .. t)
+end]]--
+--[[
+for i=1, 5 do
+	time.reset()
+	for n=1, 200000 do
+		h = -monotonicity(state)
+	end
+	t = time.getElapsed()
+	print("Monotonicity: "..h)
+	print("Time: " .. t)
+end]]--
+
+--[[function score(state)
+	for i=1, 16 do
+		
+	end
 end]]--
 
 function manhatten_dist(ideal, actual)
@@ -69,7 +81,7 @@ function col_dist(ideal, actual)
 	elseif(ideal == 13 or ideal == 14 or ideal == 15 or ideal == 16) then iy = 4 end
 	return math.abs(ay - iy)
 end
-function monotonicity2(state)
+function Heuristics.Monotonicity(state)
 	local tile_dic = {}
 	table.insert(tile_dic, {state.Tiles[1], 1, 0, false, 0}) --value, index, row dist, checked, col dist
 	table.insert(tile_dic, {state.Tiles[2], 2, 0, false, 0})
@@ -233,10 +245,10 @@ end
 --[[for i=1, 1 do
 	time.reset()
 	for n=1, 1 do
-		h = -monotonicity2(state)
+		h = -Heuristics.Monotonicity(state)
 	end
 	t = time.getElapsed()
-	print("Monotonicity2: "..h)
+	print("Heuristics.Monotonicity: "..h)
 	print("Time: " .. t)
 end]]--
 

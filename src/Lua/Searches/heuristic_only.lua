@@ -13,7 +13,7 @@ while (true) do
     local decisions = {}
     currentState:Branch()
     for k, v in pairs(currentState.Tree) do
-	    local h = monotonicity2(currentState.Tree[k]) + empty_tiles(currentState.Tree[k]) + currentState.Tree[k].AdjacencyBonus*0.25
+	    local h = Heuristics.Emptiness(currentState.Tree[k])*2+Heuristics.Monotonicity(currentState.Tree[k])/Heuristics.Score(currentState.Tree[k])
 	    decisions[k] = h
     end
     local max = -math.huge
@@ -32,5 +32,5 @@ while (true) do
         break
     end
 end
-print(gscore(currentState))
+print(Heuristics.Score(currentState))
 print("Time: " .. time.getElapsed())
