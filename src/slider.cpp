@@ -44,6 +44,7 @@ Menu:
 		{"Random", []()
 			{
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\classes.lua");
+				Lua::RunSync(Console::Path + "..\\src\\Lua\\heuristic.lua");
 				Lua::RunSync(Console::Path+"..\\src\\Lua\\Searches\\random.lua");
 			}
 		}
