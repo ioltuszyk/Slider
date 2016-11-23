@@ -20,11 +20,11 @@ This project is open-source and available [on GitHub][slider].
 
 ### Installation
 
-The required files are included in the source and library directories,
+The required files are included in the source and library directories.
 
 ### Todo
 
-Generate alpha-beta tree, propagation of heuristic value, enhance multithreading capabilities, optimize heuristic evaluation
+Enhance multithreading capabilities, better memory management, and optimize heuristic evaluation
 
 ### License
 
