@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include=".gitignore" />
     <None Include="doc\empty" />
     <None Include="README.md" />
     <None Include="src\Lua\Backup\heuristic.lua">
@@ -162,8 +163,6 @@
     <None Include="src\Lua\Searches\random.lua">
       <FileType>Text</FileType>
     </None>
-    <None Include="test\Lua\example.lua" />
-    <None Include="test\test.c-snippet" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE">

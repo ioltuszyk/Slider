@@ -21,7 +21,7 @@ end
 
 function Exp_Value(state) -- when looking at
     local val = 0
-    local probability = 1/16
+    local probability = 1/(#state.Tree)
     for k, successor in pairs(state.Tree) do
         val = val+probability*successor.Heuristic
     end
@@ -82,7 +82,7 @@ while (true) do
     currentState = currentState.Tree[direction]
     print("Moved to...")
     if (currentState==nil) then
-        print("Nothing; there are no more moves")
+        print("Nothing; there are no more moves/the program knows it will fail shortly")
         wait(2.5)
 		break
 	end
