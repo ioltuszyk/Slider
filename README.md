@@ -2,7 +2,7 @@
 
 ![CMPUT396 Project](https://s22.postimg.org/6gqbjdoq9/slider_thumb.png)
 
-Slider is a program that uses expectimax search to play games that involve the combination of tiles with matching values based on directional input. 
+Slider is a C++/Lua program that uses expectimax search to play games that involve the combination of tiles with matching values based on directional input. 
 
 Different rulesets can be used and created using Lua and involve changing parameters in the State class. Each ruleset should override:
   - State:Spawn, which determines the method of creating new children under State.Tree when the computer plays.
