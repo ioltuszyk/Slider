@@ -32,16 +32,32 @@ function Search()
 											j.Heuristic = heuristic
 											table.insert(leaf_nodes, j)
 										end
-									end
+                                    else
+                                        local heuristic = Heuristics.Emptiness(h)--*2 + Heuristics.Monotonicity(j)--Heuristics.Score(j)
+										h.Heuristic = heuristic
+                                        table.insert(leaf_nodes, h)
+                                    end 
 									h.Tree = nil
 								end
-							end
+							else
+                                local heuristic = Heuristics.Emptiness(f)--*2 + Heuristics.Monotonicity(j)--Heuristics.Score(j)
+								f.Heuristic = heuristic
+                                table.insert(leaf_nodes, f)
+                            end 
 							f.Tree = nil
 						end
-					end
+					else
+                        local heuristic = Heuristics.Emptiness(d)--*2 + Heuristics.Monotonicity(j)--Heuristics.Score(j)
+						d.Heuristic = heuristic
+                        table.insert(leaf_nodes, d)
+                    end 
 					d.Tree = nil
 				end
-			end
+			else
+                local heuristic = Heuristics.Emptiness(b)--*2 + Heuristics.Monotonicity(j)--Heuristics.Score(j)
+				b.Heuristic = heuristic
+                table.insert(leaf_nodes, b)
+            end 
 			b.Tree = nil
 		end
 	end
@@ -56,7 +72,17 @@ while (true) do
 		if (max<v.Heuristic) then
 			max = v.Heuristic
 			desiredState = v
-			currentState = v.Parent.Parent.Parent.Parent
+            local par = v.Parent
+            if (par~=nil) then
+                par = par.Parent
+                if (par~=nil) then
+                    par = par.Parent
+                    if (par~=nil) then
+                        par = par.Parent
+                    end
+                end
+            end
+			currentState = par
 		end
 	end
 

@@ -49,19 +49,34 @@ function Expectimax(state)
 											j.Heuristic = heuristic
 										end
                                         h.Heuristic = Max_Value(h)
-									end
+									else
+                                        local heuristic = Heuristics.Emptiness(h)*2 + Heuristics.Monotonicity(h)--Heuristics.Score(j)
+										h.Heuristic = heuristic
+                                    end
 								end
                                 f.Heuristic = Exp_Value(f)
-							end
+							else
+                                local heuristic = Heuristics.Emptiness(f)*2 + Heuristics.Monotonicity(f)--Heuristics.Score(j)
+								f.Heuristic = heuristic
+                            end
 						end
                         d.Heuristic = Max_Value(d)
-					end
+					else
+                        local heuristic = Heuristics.Emptiness(d)*2 + Heuristics.Monotonicity(d)--Heuristics.Score(j)
+						d.Heuristic = heuristic
+                    end
 				end
                 b.Heuristic = Exp_Value(b)
-			end
+			else
+                local heuristic = Heuristics.Emptiness(b)*2 + Heuristics.Monotonicity(b)--Heuristics.Score(j)
+				b.Heuristic = heuristic
+            end
 		end
         state.Heuristic = Max_Value(state)
-	end
+	else
+        local heuristic = Heuristics.Emptiness(state)*2 + Heuristics.Monotonicity(state)--Heuristics.Score(j)
+		state.Heuristic = heuristic
+    end
 
     local max_currentState = -math.huge
     local choice_currentState = nil
