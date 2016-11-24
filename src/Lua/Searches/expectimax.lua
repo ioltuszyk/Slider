@@ -45,7 +45,7 @@ function Expectimax(state)
 									h:Branch()
 									if (h.MoveCount>0) then
 										for i, j in pairs(h.Tree) do
-											local heuristic = Heuristics.Emptiness(j)*2 + Heuristics.Monotonicity(j)/Heuristics.Score(j)
+											local heuristic = Heuristics.Emptiness(j)*2 + Heuristics.Monotonicity(j)--Heuristics.Score(j)
 											j.Heuristic = heuristic
 										end
                                         h.Heuristic = Max_Value(h)
@@ -117,7 +117,6 @@ while (true) do
 		currentState:Print()
 		break
 	end
-    wait(1)
 end
 
 print()

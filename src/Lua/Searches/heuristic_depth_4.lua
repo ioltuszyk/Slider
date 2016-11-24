@@ -28,7 +28,7 @@ function Search()
 									h:Branch()
 									if (h.MoveCount>0) then
 										for i, j in pairs(h.Tree) do
-											local heuristic = Heuristics.Emptiness(j)*2 + Heuristics.Monotonicity(j)/Heuristics.Score(j)
+											local heuristic = Heuristics.Emptiness(j)--*2 + Heuristics.Monotonicity(j)--Heuristics.Score(j)
 											j.Heuristic = heuristic
 											table.insert(leaf_nodes, j)
 										end
