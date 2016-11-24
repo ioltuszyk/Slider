@@ -53,24 +53,28 @@ function Expectimax(state)
                                         local heuristic = Heuristics.Emptiness(h)*2 + Heuristics.Monotonicity(h)--Heuristics.Score(j)
 										h.Heuristic = heuristic
                                     end
+                                    h.Tree = nil
 								end
                                 f.Heuristic = Exp_Value(f)
 							else
                                 local heuristic = Heuristics.Emptiness(f)*2 + Heuristics.Monotonicity(f)--Heuristics.Score(j)
 								f.Heuristic = heuristic
                             end
+                            f.Tree = nil
 						end
                         d.Heuristic = Max_Value(d)
 					else
                         local heuristic = Heuristics.Emptiness(d)*2 + Heuristics.Monotonicity(d)--Heuristics.Score(j)
 						d.Heuristic = heuristic
                     end
+                    d.Tree = nil
 				end
                 b.Heuristic = Exp_Value(b)
 			else
                 local heuristic = Heuristics.Emptiness(b)*2 + Heuristics.Monotonicity(b)--Heuristics.Score(j)
 				b.Heuristic = heuristic
             end
+            b.Tree = nil
 		end
         state.Heuristic = Max_Value(state)
 	else
@@ -95,6 +99,7 @@ while (true) do
     currentState:Print()
     local direction = Expectimax(currentState)
     currentState = currentState.Tree[direction]
+    currentState.Tree = nil
     print("Moved to...")
     if (currentState==nil) then
         print("Nothing; there are no more moves/the program knows it will fail shortly")
