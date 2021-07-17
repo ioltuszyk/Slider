@@ -1,8 +1,8 @@
 # Slider
 
-![CMPUT396 Project](https://s22.postimg.org/6gqbjdoq9/slider_thumb.png)
+University of Alberta - CMPUT396 Project
 
-Slider is a C++/Lua program that uses expectimax to play a game similar to 2048 (available on mobile devices and on the web). 
+Slider is a C++/Lua program that uses an implementation of the expectimax algorithm to play a game similar to 2048 (available on mobile devices and on the web). 
 
 ### Requirements
 
